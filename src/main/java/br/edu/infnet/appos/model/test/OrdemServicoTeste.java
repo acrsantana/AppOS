@@ -5,21 +5,24 @@ import java.time.LocalDateTime;
 public class OrdemServicoTeste {
 
     public static void main(String[] args) {
-        String descricao = "Reparo no ar condicionado";
-        LocalDateTime data = LocalDateTime.now();
-        boolean garantia = true;
+        OrdemServico os = new OrdemServico();
+        os.data = LocalDateTime.now();
+        os.descricao = "Lavagem";
+        os.garantia=false;
 
-        String descricao2 = "Troca do escapamento";
-        LocalDateTime data2 = LocalDateTime.now();
-        boolean garantia2 = false;
+        OrdemServico os2 = new OrdemServico();
+        os2.data = LocalDateTime.now();
+        os2.descricao = "Reparo no ar condicionado";
+        os2.garantia=true;
 
-        String descricao3 = "Limpeza da cabine";
-        LocalDateTime data3 = LocalDateTime.now();
-        boolean garantia3 = true;
+        OrdemServico os3 = new OrdemServico();
+        os3.data = LocalDateTime.now();
+        os3.descricao = "Limpeza na cabine";
+        os3.garantia=false;
 
-        System.out.println(descricao + ";" + data + ";" + garantia);
-        System.out.println(descricao2 + ";" + data2 + ";" + garantia2);
-        System.out.println(descricao3 + ";" + data3 + ";" + garantia3);
+        System.out.println(os.toString());
+        System.out.println(os2);
+        System.out.println(os3);
     }
 
 
