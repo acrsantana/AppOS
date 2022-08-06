@@ -1,11 +1,11 @@
-package br.edu.infnet.appos.model.test;
+package br.edu.infnet.appos.model.domain;
 
 import java.time.LocalDateTime;
 
 public class OrdemServico {
-    String descricao;
-    LocalDateTime data;
-    boolean garantia;
+    public String descricao;
+    public LocalDateTime data;
+    public boolean garantia;
 
     @Override
     public String toString() {

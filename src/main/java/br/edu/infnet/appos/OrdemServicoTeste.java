@@ -1,10 +1,16 @@
-package br.edu.infnet.appos.model.test;
+package br.edu.infnet.appos;
+
+import br.edu.infnet.appos.model.domain.OrdemServico;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+@Component
+public class OrdemServicoTeste implements ApplicationRunner {
 
-public class OrdemServicoTeste {
-
-    public static void main(String[] args) {
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
         OrdemServico os = new OrdemServico();
         os.data = LocalDateTime.now();
         os.descricao = "Lavagem";
@@ -24,7 +30,4 @@ public class OrdemServicoTeste {
         System.out.println(os2);
         System.out.println(os3);
     }
-
-
-
 }
