@@ -1,11 +1,15 @@
 package br.edu.infnet.appos.model.domain;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+@Data @AllArgsConstructor @NoArgsConstructor
 public class OrdemServico {
-    public String descricao;
-    public LocalDateTime data;
-    public boolean garantia;
+    private String descricao;
+    private LocalDateTime data;
+    private boolean garantia;
 
     @Override
     public String toString() {
