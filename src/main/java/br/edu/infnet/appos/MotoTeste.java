@@ -1,11 +1,14 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.model.domain.Moto;
+import br.edu.infnet.appos.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(3)
 public class MotoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -24,8 +27,8 @@ public class MotoTeste implements ApplicationRunner {
         m3.setModelo("CBR");
         m3.setAnoFabricacao(2020);
 
-        System.out.println(m1);
-        System.out.println(m2);
-        System.out.println(m3);
+        AppImpressao.relatorio(m1, "Moto 1");
+        AppImpressao.relatorio(m2, "Moto 2");
+        AppImpressao.relatorio(m3, "Moto 3");
     }
 }

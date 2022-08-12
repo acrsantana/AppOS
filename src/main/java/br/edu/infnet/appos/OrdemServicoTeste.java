@@ -3,10 +3,12 @@ package br.edu.infnet.appos;
 import br.edu.infnet.appos.model.domain.OrdemServico;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 @Component
+@Order(5)
 public class OrdemServicoTeste implements ApplicationRunner {
 
     @Override

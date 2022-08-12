@@ -10,9 +10,15 @@ public class Carro extends Veiculo{
     private boolean arCondicionado;
     private int portas;
 
+    @Override public void impressao() {
+        System.out.println("### Carro ###");
+        System.out.println(toString());
+    }
+
     @Override
     public String toString() {
-        return tipo + ";" + arCondicionado + ";" + portas + ";" + super.toString();
+
+        return "Carro: [" + tipo + ";" + arCondicionado + ";" + portas + ";" + super.toString() + "]";
     }
 }
 

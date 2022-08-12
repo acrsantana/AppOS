@@ -8,8 +8,14 @@ public class Solicitante {
     private String telefone;
     private boolean vip;
 
+    public void impressao(){
+        System.out.println("### Solicitante ###");
+        System.out.println(toString());
+    }
+
     @Override
     public String toString() {
-        return nome + ";" + telefone + ";" + vip;
+
+        return "Solicitante: [" + nome + ";" + telefone + ";" + vip + "]";
     }
 }

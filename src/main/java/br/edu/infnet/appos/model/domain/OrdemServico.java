@@ -11,8 +11,14 @@ public class OrdemServico {
     private LocalDateTime data;
     private boolean garantia;
 
+    public void impressao(){
+        System.out.println("### Ordem de Serviço ###");
+        System.out.println(toString());
+    }
+
     @Override
     public String toString() {
-        return descricao + ";" + data + ";" + garantia;
+
+        return "Ordem de Serviço: [" + descricao + ";" + data + ";" + garantia + "]";
     }
 }

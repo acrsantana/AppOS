@@ -10,9 +10,23 @@ public class Moto extends Veiculo{
     private String modelo;
     private int quantidadeDePassageiros;
 
+    @Override public int getPotencia() {
+        return cilindrada;
+    }
+
+    @Override public void impressao() {
+        System.out.println("### Moto ###");
+        System.out.println(toString());
+    }
+
+    public boolean isCiclomotor(){
+        return cilindrada < 50 ? true : false;
+    }
+
     @Override
     public String toString() {
-        return cilindrada + ";" + modelo + ";" + quantidadeDePassageiros + ";" + super.toString();
+
+        return "Moto: [" + cilindrada + ";" + modelo + ";" + quantidadeDePassageiros + ";" + super.toString() + "]";
     }
 }
 

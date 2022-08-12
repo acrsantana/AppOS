@@ -4,16 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Veiculo {
+public abstract class Veiculo {
     private String marca;
     private String modelo;
     private int anoFabricacao;
 
+    public int getPotencia(){
+        return anoFabricacao > 2015 ? 180 : 150;
+    }
+
+    public abstract void impressao();
+
     @Override
     public String toString() {
-        return marca + ";" + modelo + ";" + anoFabricacao;
+        return marca + ";" + modelo + ";" + anoFabricacao + ";" + getPotencia();
     }
 }
 

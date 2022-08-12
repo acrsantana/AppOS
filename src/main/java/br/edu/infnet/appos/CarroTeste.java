@@ -1,14 +1,18 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.model.domain.Carro;
+import br.edu.infnet.appos.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(1)
 public class CarroTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         Carro c1 = new Carro("Coupe", true, 2);
         c1.setMarca("Tesla");
         c1.setModelo("Model S");
@@ -24,8 +28,9 @@ public class CarroTeste implements ApplicationRunner {
         c3.setModelo("A4");
         c3.setAnoFabricacao(2015);
 
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(c3);
+        AppImpressao.relatorio(c1, "Carro 1");
+        AppImpressao.relatorio(c2, "Carro 2");
+        AppImpressao.relatorio(c3, "Carro 3");
+
     }
 }
