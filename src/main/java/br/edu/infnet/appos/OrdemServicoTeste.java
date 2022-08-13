@@ -1,6 +1,7 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.model.domain.OrdemServico;
+import br.edu.infnet.appos.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -28,8 +29,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os3.setDescricao("Limpeza na cabine");
         os3.setGarantia(false);
 
-        System.out.println(os.toString());
-        System.out.println(os2);
-        System.out.println(os3);
+        AppImpressao.relatorio(os, "Ordem de serviço teste 1");
+        AppImpressao.relatorio(os2, "Ordem de serviço teste 2");
+        AppImpressao.relatorio(os3, "Ordem de serviço teste 3");
     }
 }

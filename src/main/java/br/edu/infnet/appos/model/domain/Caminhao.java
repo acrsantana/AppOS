@@ -11,7 +11,7 @@ public class Caminhao extends Veiculo{
     private float comprimento;
 
     @Override public int getPotencia() {
-        return super.getPotencia() + 100;
+        return getAnoFabricacao() > 2015 ? 240 : 200;
     }
 
     @Override public void impressao() {
@@ -24,5 +24,6 @@ public class Caminhao extends Veiculo{
 
         return "Caminhão: [" + tipo + ";" + capacidadeCarga + ";" + comprimento + ";" + super.toString() + "]";
     }
+
 }
 

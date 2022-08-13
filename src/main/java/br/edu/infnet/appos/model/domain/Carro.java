@@ -15,6 +15,10 @@ public class Carro extends Veiculo{
         System.out.println(toString());
     }
 
+    @Override public int getPotencia() {
+        return getAnoFabricacao() > 2015 ? 150 : 180;
+    }
+
     @Override
     public String toString() {
 

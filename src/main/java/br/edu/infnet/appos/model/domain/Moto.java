@@ -20,7 +20,7 @@ public class Moto extends Veiculo{
     }
 
     public boolean isCiclomotor(){
-        return cilindrada < 50 ? true : false;
+        return cilindrada < 50;
     }
 
     @Override
