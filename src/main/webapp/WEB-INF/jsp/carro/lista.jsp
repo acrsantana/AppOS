@@ -57,26 +57,26 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Atributo</th>
             <th>Tipo</th>
-            <th>Descrição</th>
+            <th>Ar Condicionado</th>
+            <th>Portas</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>tipo</td>
-            <td>String</td>
-            <td>Indica se o carro é hatch, sedan, coupe, suv, etc</td>
+            <td>Hatch</td>
+            <td>Sim</td>
+            <td>2</td>
         </tr>
         <tr>
-            <td>arCondicionado</td>
-            <td>boolean</td>
-            <td>Indica se o carro possui ar condicionado</td>
+            <td>Sedan</td>
+            <td>Sim</td>
+            <td>4</td>
         </tr>
         <tr>
-            <td>portas</td>
-            <td>int</td>
-            <td>Indica a quantidade de portas do carro</td>
+            <td>Coupe</td>
+            <td>Sim</td>
+            <td>3</td>
         </tr>
         </tbody>
     </table>

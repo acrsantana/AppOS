@@ -57,26 +57,26 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
+            <th>Cilindrada</th>
+            <th>Modelo</th>
+            <th>Qtd. Passageiros</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>cilindrada</td>
-            <td>int</td>
-            <td>Indica a potencia da moto</td>
+            <td>125</td>
+            <td>CG</td>
+            <td>2</td>
         </tr>
         <tr>
-            <td>modelo</td>
-            <td>String</td>
-            <td>Indica o modelo da moto, scooter, café racer, naked, etc</td>
+            <td>500</td>
+            <td>CBR</td>
+            <td>2</td>
         </tr>
         <tr>
-            <td>quantidadeDePassageiros</td>
-            <td>int</td>
-            <td>Capacidade total de passageiros da moto</td>
+            <td>50</td>
+            <td>Scooter</td>
+            <td>1</td>
         </tr>
         </tbody>
     </table>

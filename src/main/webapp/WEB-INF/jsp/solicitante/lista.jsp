@@ -57,26 +57,26 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Vip</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>nome</td>
-            <td>String</td>
-            <td>Nome do cliente que contratou o serviço</td>
+            <td>Augusto Cezar</td>
+            <td>(71) 99999-9999</td>
+            <td>Sim</td>
         </tr>
         <tr>
-            <td>telefone</td>
-            <td>String</td>
-            <td>Telefone de contato do solicitante</td>
+            <td>Luna de Carvalho</td>
+            <td>(21) 88888-8888</td>
+            <td>Sim</td>
         </tr>
         <tr>
-            <td>vip</td>
-            <td>boolean</td>
-            <td>Indica se o solicitante é um cliente vip</td>
+            <td>Joice Camara</td>
+            <td>(11) 77777-7777</td>
+            <td>Não</td>
         </tr>
         </tbody>
     </table>

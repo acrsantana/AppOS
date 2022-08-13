@@ -57,26 +57,26 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
             <th>Descrição</th>
+            <th>Data</th>
+            <th>Garantia</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>descricao</td>
-            <td>String</td>
-            <td>Descriçãoo do serviço a ser realizado no veículo</td>
+            <td>Troca de óleo</td>
+            <td>12/08/2022 12:25:00</td>
+            <td>Não</td>
         </tr>
         <tr>
-            <td>data</td>
-            <td>LocalDateTime</td>
-            <td>Data de entrega do veículo para realização do serviço</td>
+            <td>Revisão 10000km</td>
+            <td>08/08/2022 16:00:00</td>
+            <td>Sim</td>
         </tr>
         <tr>
-            <td>garantia</td>
-            <td>boolean</td>
-            <td>Indica se o veículo se encontra na garantia</td>
+            <td>Pintura</td>
+            <td>05/08/2022 14:45:00</td>
+            <td>Não</td>
         </tr>
         </tbody>
     </table>

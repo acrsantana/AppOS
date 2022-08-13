@@ -57,26 +57,26 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
-            <th>Atributo</th>
             <th>Tipo</th>
-            <th>Descrição</th>
+            <th>Capacidade</th>
+            <th>Comprimento</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>tipo</td>
-            <td>String</td>
-            <td>Indica o tipo do caminhão como Vuc, Truck, Bitrem, Carreta...</td>
+            <td>Truck</td>
+            <td>500</td>
+            <td>7</td>
         </tr>
         <tr>
-            <td>capacidadeCarga</td>
-            <td>float</td>
-            <td>Indica a capacidade total de carga do caminhão</td>
+            <td>Carreta</td>
+            <td>1000</td>
+            <td>10</td>
         </tr>
         <tr>
-            <td>comprimento</td>
-            <td>float</td>
-            <td>Indica o comprimento total do caminhão</td>
+            <td>Bitrem</td>
+            <td>2000</td>
+            <td>15</td>
         </tr>
         </tbody>
     </table>
