@@ -78,7 +78,7 @@
                     <td>${caminhao.tipo}</td>
                     <td>${caminhao.capacidadeCarga}</td>
                     <td>${caminhao.comprimento}</td>
-                    <td><a href="#">Excluir</a></td>
+                    <td><a href="/caminhao/${caminhao.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

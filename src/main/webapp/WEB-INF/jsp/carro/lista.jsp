@@ -65,6 +65,7 @@
             <th>Tipo</th>
             <th>Ar Condicionado</th>
             <th>Portas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -86,6 +87,7 @@
                     </c:choose>
 
                     <td>${carro.portas}</td>
+                    <td><a href="/carro/${carro.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

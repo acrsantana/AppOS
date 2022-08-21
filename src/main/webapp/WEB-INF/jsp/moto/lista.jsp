@@ -65,6 +65,7 @@
             <th>Cilindrada</th>
             <th>Modelo</th>
             <th>Qtd. Passageiros</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -77,6 +78,7 @@
                     <td>${moto.cilindrada}</td>
                     <td>${moto.modelo}</td>
                     <td>${moto.quantidadeDePassageiros}</td>
+                    <td><a href="/moto/${moto.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

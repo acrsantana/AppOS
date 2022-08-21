@@ -62,6 +62,7 @@
             <th>Nome</th>
             <th>Telefone</th>
             <th>Vip</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -78,6 +79,7 @@
                             <td>Não</td>
                         </c:otherwise>
                     </c:choose>
+                    <td><a href="/solicitante/${solicitante.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

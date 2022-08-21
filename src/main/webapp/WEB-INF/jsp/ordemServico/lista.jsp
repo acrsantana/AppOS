@@ -63,6 +63,7 @@
             <th>Data</th>
             <th>Garantia</th>
             <th>Solicitante</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -80,6 +81,7 @@
                         </c:otherwise>
                     </c:choose>
                     <td>${os.solicitante.nome}</td>
+                    <td><a href="/ordemServico/${os.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

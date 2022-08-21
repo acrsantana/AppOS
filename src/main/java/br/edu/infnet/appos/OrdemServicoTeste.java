@@ -1,5 +1,6 @@
 package br.edu.infnet.appos;
 
+import br.edu.infnet.appos.controller.OrdemServicoController;
 import br.edu.infnet.appos.model.domain.OrdemServico;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import br.edu.infnet.appos.model.domain.*;
@@ -33,6 +34,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os.setMecanico("Adalberto");
         os.setGarantia(false);
 
+        OrdemServicoController.adicionaOS(os, "Adicionada OS 1");
+
         List<Servico> servicos2 = new ArrayList<>();
 
         servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
@@ -44,6 +47,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
                 );
         os2.setMecanico("Lucas");
         os2.setGarantia(true);
+
+        OrdemServicoController.adicionaOS(os2, "Adicionada OS 2");
 
         List<Servico> servicos3 = new ArrayList<>();
 
@@ -58,8 +63,6 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os3.setMecanico("Jairo");
         os3.setGarantia(false);
 
-        AppImpressao.relatorio(os, "Ordem de serviço teste 1");
-        AppImpressao.relatorio(os2, "Ordem de serviço teste 2");
-        AppImpressao.relatorio(os3, "Ordem de serviço teste 3");
+        OrdemServicoController.adicionaOS(os3, "Adicionada OS 3");
     }
 }
