@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class OrdemServico {
@@ -14,12 +14,12 @@ public class OrdemServico {
     private boolean garantia;
     private Solicitante solicitante;
     private Veiculo veiculo;
-    private List<Servico> servicos;
+    private Set<Servico> servicos;
 
     public OrdemServico(
             Solicitante solicitante,
             Veiculo veiculo,
-            List<Servico> servicos
+            Set<Servico> servicos
     ) {
         this.solicitante = solicitante;
         this.veiculo = veiculo;

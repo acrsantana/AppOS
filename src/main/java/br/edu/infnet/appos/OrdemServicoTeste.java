@@ -8,15 +8,19 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class OrdemServicoTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        List<Servico> servicos = new ArrayList<>();
+        Set<Servico> servicos = new HashSet<>();
         servicos.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
+        servicos.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
+        servicos.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
         servicos.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
 
         OrdemServico os = new OrdemServico(
@@ -27,8 +31,9 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os.setMecanico("Adalberto");
         os.setGarantia(false);
 
-        List<Servico> servicos2 = new ArrayList<>();
+        Set<Servico> servicos2 = new HashSet<>();
 
+        servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
         servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
 
         OrdemServico os2 = new OrdemServico(
@@ -39,8 +44,11 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os2.setMecanico("Lucas");
         os2.setGarantia(true);
 
-        List<Servico> servicos3 = new ArrayList<>();
+        Set<Servico> servicos3 = new HashSet<>();
 
+        servicos3.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
+        servicos3.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
+        servicos3.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
         servicos3.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
         servicos3.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
         servicos3.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
