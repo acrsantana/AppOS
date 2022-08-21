@@ -21,10 +21,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Set<Servico> servicos = new HashSet<>();
+        List<Servico> servicos = new ArrayList<>();
         servicos.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
-        servicos.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
-        servicos.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
         servicos.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
 
         OrdemServico os = new OrdemServico(
@@ -35,9 +33,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os.setMecanico("Adalberto");
         os.setGarantia(false);
 
-        Set<Servico> servicos2 = new HashSet<>();
+        List<Servico> servicos2 = new ArrayList<>();
 
-        servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
         servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
 
         OrdemServico os2 = new OrdemServico(
@@ -48,11 +45,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os2.setMecanico("Lucas");
         os2.setGarantia(true);
 
-        Set<Servico> servicos3 = new HashSet<>();
+        List<Servico> servicos3 = new ArrayList<>();
 
-        servicos3.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
-        servicos3.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
-        servicos3.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
         servicos3.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
         servicos3.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
         servicos3.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));

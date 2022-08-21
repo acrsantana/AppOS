@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -15,12 +16,13 @@ public class OrdemServico implements IPrinter{
     private boolean garantia;
     private Solicitante solicitante;
     private Veiculo veiculo;
-    private Set<Servico> servicos;
+    private List<Servico> servicos;
+    private Integer id = 0;
 
     public OrdemServico(
             Solicitante solicitante,
             Veiculo veiculo,
-            Set<Servico> servicos
+            List<Servico> servicos
     ) {
         this.solicitante = solicitante;
         this.veiculo = veiculo;
@@ -31,7 +33,8 @@ public class OrdemServico implements IPrinter{
 
     @Override
     public String toString() {
-        return mecanico + ";" + data + ";" + garantia + ";" + solicitante + ";" + servicos.size();
+
+        return "Ordem de Serviço: [" + mecanico + ";" + data + ";" + garantia + ";" + solicitante + ";" + servicos.size() + "]";
     }
 
     @Override public void impressao() {

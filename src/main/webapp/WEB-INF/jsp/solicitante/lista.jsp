@@ -58,6 +58,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Nome</th>
             <th>Telefone</th>
             <th>Vip</th>
@@ -66,6 +67,7 @@
         <tbody>
             <c:forEach var="solicitante" items="${listagem}">
                 <tr>
+                    <td>${solicitante.id}</td>
                     <td>${solicitante.nome}</td>
                     <td>${solicitante.telefone}</td>
                     <c:choose>

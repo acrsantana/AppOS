@@ -58,6 +58,7 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Marca</th>
             <th>Estilo</th>
             <th>Ano Fabricação</th>
@@ -69,6 +70,7 @@
         <tbody>
             <c:forEach var="moto" items="${listagem}">
                 <tr>
+                    <td>${moto.id}</td>
                     <td>${moto.marca}</td>
                     <td>${moto.estilo}</td>
                     <td>${moto.anoFabricacao}</td>

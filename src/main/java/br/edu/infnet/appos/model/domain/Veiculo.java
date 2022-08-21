@@ -11,6 +11,8 @@ public abstract class Veiculo implements IPrinter {
     private String modelo;
     private int anoFabricacao;
 
+    private Integer id;
+
     public abstract int getPotencia();
 
 

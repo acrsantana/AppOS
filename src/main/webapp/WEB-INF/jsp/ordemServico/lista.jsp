@@ -58,6 +58,7 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Mecânico</th>
             <th>Data</th>
             <th>Garantia</th>
@@ -67,6 +68,7 @@
         <tbody>
             <c:forEach var="os" items="${listagem}">
                 <tr>
+                    <td>${os.id}</td>
                     <td>${os.mecanico}</td>
                     <td>${os.data}</td>
                     <c:choose>

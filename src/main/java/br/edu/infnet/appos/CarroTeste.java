@@ -1,5 +1,6 @@
 package br.edu.infnet.appos;
 
+import br.edu.infnet.appos.controller.CarroController;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
@@ -17,20 +18,19 @@ public class CarroTeste implements ApplicationRunner {
         c1.setMarca("Tesla");
         c1.setModelo("Model S");
         c1.setAnoFabricacao(2021);
+        CarroController.adicionaCarro(c1, "Carro 1 - Tesla");
 
         Carro c2 = new Carro("SUV", true, 4);
         c2.setMarca("Mercedez Benz");
         c2.setModelo("G63 AMG");
         c2.setAnoFabricacao(2022);
+        CarroController.adicionaCarro(c2, "Carro 2 - Mercedes");
 
         Carro c3 = new Carro("Sedan", true, 4);
         c3.setMarca("Audi");
         c3.setModelo("A4");
         c3.setAnoFabricacao(2015);
-
-        AppImpressao.relatorio(c1, "Carro 1");
-        AppImpressao.relatorio(c2, "Carro 2");
-        AppImpressao.relatorio(c3, "Carro 3");
+        CarroController.adicionaCarro(c3, "Carro 3 - Audi");
 
     }
 }

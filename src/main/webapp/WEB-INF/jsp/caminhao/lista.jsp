@@ -58,23 +58,27 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Ano Fabricação</th>
             <th>Tipo</th>
             <th>Capacidade (Kg)</th>
             <th>Comprimento (M)</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
             <c:forEach var="caminhao" items="${listagem}">
                 <tr>
+                    <td>${caminhao.id}</td>
                     <td>${caminhao.marca}</td>
                     <td>${caminhao.modelo}</td>
                     <td>${caminhao.anoFabricacao}</td>
                     <td>${caminhao.tipo}</td>
                     <td>${caminhao.capacidadeCarga}</td>
                     <td>${caminhao.comprimento}</td>
+                    <td><a href="#">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>
