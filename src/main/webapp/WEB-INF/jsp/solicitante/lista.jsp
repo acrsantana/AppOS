@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,21 +64,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Augusto Cezar</td>
-            <td>(71) 99999-9999</td>
-            <td>Sim</td>
-        </tr>
-        <tr>
-            <td>Luna de Carvalho</td>
-            <td>(21) 88888-8888</td>
-            <td>Sim</td>
-        </tr>
-        <tr>
-            <td>Joice Camara</td>
-            <td>(11) 77777-7777</td>
-            <td>Não</td>
-        </tr>
+            <c:forEach var="solicitante" items="${listagem}">
+                <tr>
+                    <td>${solicitante.nome}</td>
+                    <td>${solicitante.telefone}</td>
+                    <c:choose>
+                        <c:when test="${solicitante.vip}">
+                            <td>Sim</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>Não</td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

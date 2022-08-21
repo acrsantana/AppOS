@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,27 +58,34 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano Fabricação</th>
             <th>Tipo</th>
             <th>Ar Condicionado</th>
             <th>Portas</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Hatch</td>
-            <td>Sim</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>Sedan</td>
-            <td>Sim</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>Coupe</td>
-            <td>Sim</td>
-            <td>3</td>
-        </tr>
+            <c:forEach var="carro" items="${listagem}">
+                <tr>
+                    <td>${carro.marca}</td>
+                    <td>${carro.modelo}</td>
+                    <td>${carro.anoFabricacao}</td>
+                    <td>${carro.tipo}</td>
+
+                    <c:choose>
+                        <c:when test="${carro.arCondicionado}">
+                            <td>Sim</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>Não</td>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <td>${carro.portas}</td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,27 +58,25 @@
     <table class="table table-striped mt-3">
         <thead>
         <tr>
+            <th>Marca</th>
+            <th>Estilo</th>
+            <th>Ano Fabricação</th>
             <th>Cilindrada</th>
             <th>Modelo</th>
             <th>Qtd. Passageiros</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>125</td>
-            <td>CG</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>500</td>
-            <td>CBR</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>50</td>
-            <td>Scooter</td>
-            <td>1</td>
-        </tr>
+            <c:forEach var="moto" items="${listagem}">
+                <tr>
+                    <td>${moto.marca}</td>
+                    <td>${moto.estilo}</td>
+                    <td>${moto.anoFabricacao}</td>
+                    <td>${moto.cilindrada}</td>
+                    <td>${moto.modelo}</td>
+                    <td>${moto.quantidadeDePassageiros}</td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

@@ -3,11 +3,10 @@ package br.edu.infnet.appos.model.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 @Data @AllArgsConstructor
 public class Moto extends Veiculo{
     private int cilindrada;
-    private String modelo;
+    private String estilo;
     private int quantidadeDePassageiros;
 
     @Override public int getPotencia() {
@@ -26,7 +25,7 @@ public class Moto extends Veiculo{
     @Override
     public String toString() {
 
-        return "Moto: [" + cilindrada + ";" + modelo + ";" + quantidadeDePassageiros + ";" + super.toString() + "]";
+        return "Moto: [" + cilindrada + ";" + estilo + ";" + quantidadeDePassageiros + ";" + super.toString() + "]";
     }
 }
 
