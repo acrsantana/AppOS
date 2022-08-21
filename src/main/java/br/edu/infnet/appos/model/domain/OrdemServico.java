@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class OrdemServico {
@@ -13,11 +14,10 @@ public class OrdemServico {
     private Solicitante solicitante;
 
     public OrdemServico(
-            String nome,
-            String telefone,
-            boolean vip
+            Solicitante solicitante
     ) {
-        this.solicitante = new Solicitante(nome, telefone, vip);
+        this.solicitante = solicitante;
+        this.data = LocalDateTime.now();
     }
 
     @Override

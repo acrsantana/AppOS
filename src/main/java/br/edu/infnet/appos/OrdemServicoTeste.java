@@ -12,18 +12,15 @@ public class OrdemServicoTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        OrdemServico os = new OrdemServico("Luna", "31999999999", true);
-        os.setData(LocalDateTime.now());
+        OrdemServico os = new OrdemServico(new Solicitante("Luna", "31999999999", true));
         os.setDescricao("Lavagem");
         os.setGarantia(false);
 
-        OrdemServico os2 = new OrdemServico("Tiago", "71999999999", false);
-        os2.setData(LocalDateTime.now());
+        OrdemServico os2 = new OrdemServico(new Solicitante("Tiago", "71999999999", false));
         os2.setDescricao("Reparo no ar condicionado");
         os2.setGarantia(true);
 
-        OrdemServico os3 = new OrdemServico("Paulo", "51999999999", true);
-        os3.setData(LocalDateTime.now());
+        OrdemServico os3 = new OrdemServico(new Solicitante("Paulo", "51999999999", true));
         os3.setDescricao("Limpeza na cabine");
         os3.setGarantia(false);
 
