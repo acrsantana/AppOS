@@ -12,6 +12,14 @@ public class OrdemServico {
     private boolean garantia;
     private Solicitante solicitante;
 
+    public OrdemServico(
+            String nome,
+            String telefone,
+            boolean vip
+    ) {
+        this.solicitante = new Solicitante(nome, telefone, vip);
+    }
+
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + garantia + ";" + solicitante;
