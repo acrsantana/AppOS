@@ -1,11 +1,14 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.model.domain.Caminhao;
+import br.edu.infnet.appos.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(2)
 public class CaminhaoTeste implements ApplicationRunner {
 
     @Override
@@ -25,8 +28,8 @@ public class CaminhaoTeste implements ApplicationRunner {
         c3.setModelo("Super");
         c3.setAnoFabricacao(2010);
 
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(c3);
+        AppImpressao.relatorio(c1, "Caminhão 1");
+        AppImpressao.relatorio(c2, "Caminhão 2");
+        AppImpressao.relatorio(c3, "Caminhão 3");
     }
 }

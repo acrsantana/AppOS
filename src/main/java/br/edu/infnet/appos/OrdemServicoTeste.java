@@ -1,8 +1,11 @@
 package br.edu.infnet.appos;
 
+import br.edu.infnet.appos.model.domain.OrdemServico;
+import br.edu.infnet.appos.model.test.AppImpressao;
 import br.edu.infnet.appos.model.domain.*;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -13,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
+@Order(5)
 public class OrdemServicoTeste implements ApplicationRunner {
 
     @Override
@@ -60,8 +64,8 @@ public class OrdemServicoTeste implements ApplicationRunner {
         os3.setMecanico("Jairo");
         os3.setGarantia(false);
 
-        System.out.println(os);
-        System.out.println(os2);
-        System.out.println(os3);
+        AppImpressao.relatorio(os, "Ordem de serviço teste 1");
+        AppImpressao.relatorio(os2, "Ordem de serviço teste 2");
+        AppImpressao.relatorio(os3, "Ordem de serviço teste 3");
     }
 }
