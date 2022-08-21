@@ -32,8 +32,6 @@ public class OrdemServico implements IPrinter{
     @Override
     public String toString() {
         return mecanico + ";" + data + ";" + garantia + ";" + solicitante + ";" + servicos.size();
-
-        return "Ordem de Serviço: [" + descricao + ";" + data + ";" + garantia + "]";
     }
 
     @Override public void impressao() {
