@@ -28,7 +28,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/ordemServico">Ordem de Serviços</a>
             </li>
             <li class="nav-item">
@@ -41,7 +41,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/moto">Moto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/caminhao">Caminhão</a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/caminhao">Caminhão</a>
             </li>
         </ul>
     </div>
