@@ -10,9 +10,10 @@ public class OrdemServico {
     private String descricao;
     private LocalDateTime data;
     private boolean garantia;
+    private Solicitante solicitante;
 
     @Override
     public String toString() {
-        return descricao + ";" + data + ";" + garantia;
+        return descricao + ";" + data + ";" + garantia + ";" + solicitante;
     }
 }

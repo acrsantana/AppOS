@@ -26,7 +26,7 @@
             <div class="col bg-primary border border-white">
                 <button type="button" class="btn btn-block btn-primary w-100" data-toggle="collapse" href="#ordemDeServico" aria-expanded="false"
                         aria-controls="collapseExample">
-                    Ordem de Serviço
+                    OrdemServico
                 </button>
             </div>
 
@@ -39,7 +39,7 @@
             <div class="col bg-primary border border-white">
                 <button type="button" class="btn btn-primary btn-block w-100" data-toggle="collapse" href="#veiculo" aria-expanded="false"
                         aria-controls="collapseExample">
-                    Veículo
+                    Veiculo
                 </button>
             </div>
             <div class="col bg-primary border border-white">
@@ -57,7 +57,7 @@
             <div class="col bg-primary border border-white">
                 <button type="button" class="btn btn-primary btn-block w-100" data-toggle="collapse" href="#caminhao" aria-expanded="false"
                         aria-controls="collapseExample">
-                    Caminhão
+                    Caminhao
                 </button>
             </div>
         </div>
