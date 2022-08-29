@@ -18,7 +18,7 @@ public abstract class Veiculo implements IPrinter {
 
     @Override
     public String toString() {
-        return marca + ";" + modelo + ";" + anoFabricacao + ";" + getPotencia();
+        return marca + ";" + modelo + ";" + anoFabricacao;
     }
 }
 

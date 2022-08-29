@@ -1,8 +1,10 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.controller.CaminhaoController;
+import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
 import br.edu.infnet.appos.model.domain.Caminhao;
-import br.edu.infnet.appos.model.test.AppImpressao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -12,24 +14,52 @@ import org.springframework.stereotype.Component;
 @Order(2)
 public class CaminhaoTeste implements ApplicationRunner {
 
+    Logger logger = LoggerFactory.getLogger(CaminhaoTeste.class);
     @Override
-    public void run(ApplicationArguments args) throws Exception {
-        Caminhao c1 = new Caminhao("Baú", 1000.0f, 7.0f);
-        c1.setMarca("Mercedez Benz");
-        c1.setModelo("Refrigerado");
-        c1.setAnoFabricacao(2020);
-        CaminhaoController.adicionaCaminhao(c1, "Caminhão 1");
+    public void run(ApplicationArguments args) {
+        try {
+            Caminhao c1 = new Caminhao("Baú", 1000.0f, 7.0f);
+            c1.setMarca("Mercedez Benz");
+            c1.setModelo("Refrigerado");
+            c1.setAnoFabricacao(2020);
+            System.out.println("Potencia do veículo: " + c1.getPotencia());
+            CaminhaoController.adicionaCaminhao(c1, "Caminhão 1");
+        } catch (CapacidadeCargaInvalidaException e){
+            logger.error(e.getMessage());
+        }
 
-        Caminhao c2 = new Caminhao("Carreta", 2000.0f, 10.0f);
-        c2.setMarca("Hyundai");
-        c2.setModelo("Aberto");
-        c2.setAnoFabricacao(2022);
-        CaminhaoController.adicionaCaminhao(c2, "Caminhão 2");
+        try {
+            Caminhao c2 = new Caminhao("Carreta", 2000.0f, 10.0f);
+            c2.setMarca("Hyundai");
+            c2.setModelo("Aberto");
+            c2.setAnoFabricacao(2022);
+            System.out.println("Potencia do veículo: " + c2.getPotencia());
+            CaminhaoController.adicionaCaminhao(c2, "Caminhão 2");
+        } catch (CapacidadeCargaInvalidaException e){
+            logger.error(e.getMessage());
+        }
 
-        Caminhao c3 = new Caminhao("Bitrem", 4000.0f, 12.0f);
-        c3.setMarca("Volkswagen");
-        c3.setModelo("Super");
-        c3.setAnoFabricacao(2010);
-        CaminhaoController.adicionaCaminhao(c3, "Caminhão 3");
+        try {
+            Caminhao c3 = new Caminhao("Bitrem", 4000.0f, 12.0f);
+            c3.setMarca("Volkswagen");
+            c3.setModelo("Super");
+            c3.setAnoFabricacao(2010);
+            System.out.println("Potencia do veículo: " + c3.getPotencia());
+            CaminhaoController.adicionaCaminhao(c3, "Caminhão 3");
+        } catch (CapacidadeCargaInvalidaException e){
+            logger.error(e.getMessage());
+        }
+
+        try {
+            Caminhao c4 = new Caminhao("Bitrem", 40f, 12.0f);
+            c4.setMarca("Volkswagen");
+            c4.setModelo("Super");
+            c4.setAnoFabricacao(2010);
+            System.out.println("Potencia do veículo: " + c4.getPotencia());
+            CaminhaoController.adicionaCaminhao(c4, "Caminhão 3");
+        } catch (CapacidadeCargaInvalidaException e){
+            logger.error(e.getMessage());
+        }
+
     }
 }
