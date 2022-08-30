@@ -1,6 +1,7 @@
 package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
+import br.edu.infnet.appos.exceptions.ComprimentoInvalidoException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ public class Caminhao extends Veiculo{
     private String tipo;
     private float capacidadeCarga;
     private float comprimento;
+    private final float VALOR_BASE = 80000f;
 
     public Caminhao(String tipo, float capacidadeCarga, float comprimento) throws CapacidadeCargaInvalidaException {
         if (capacidadeCarga < 500)
@@ -17,6 +19,13 @@ public class Caminhao extends Veiculo{
         this.tipo = tipo;
         this.capacidadeCarga = capacidadeCarga;
         this.comprimento = comprimento;
+    }
+
+    public float getValor() throws ComprimentoInvalidoException {
+        if (comprimento < 5){
+            throw new ComprimentoInvalidoException("O comprimento do veículo não pode ser inferior a 5 metros");
+        }
+        return VALOR_BASE * (comprimento/2) + capacidadeCarga;
     }
 
     @Override public int getPotencia() {
