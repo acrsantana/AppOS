@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.Caminhao;
 import br.edu.infnet.appos.model.domain.Veiculo;
 import br.edu.infnet.appos.model.test.AppImpressao;
@@ -20,7 +21,7 @@ public class CaminhaoController {
 
     private static Map<Integer, Caminhao> mapaCaminhao = new HashMap<>();
     private static Integer id = 1;
-    Logger logger = LoggerFactory.getLogger(CaminhaoController.class);
+    static Logger logger = LoggerFactory.getLogger(CaminhaoController.class);
     @GetMapping
     public String telaLista(Model model){
 
@@ -38,7 +39,11 @@ public class CaminhaoController {
     public static void adicionaCaminhao(Caminhao caminhao, String mensagem){
         caminhao.setId(id++);
         mapaCaminhao.put(caminhao.getId(), caminhao);
-        AppImpressao.relatorio(caminhao, mensagem);
+        try {
+            AppImpressao.relatorio(caminhao, mensagem);
+        } catch (ProblemasNaLeituraDoArquivoException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     private Collection<Caminhao> pegaLista(){

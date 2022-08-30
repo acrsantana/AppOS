@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/moto")
 public class MotoController {
-    Logger logger = LoggerFactory.getLogger(MotoController.class);
+    static Logger logger = LoggerFactory.getLogger(MotoController.class);
     private static Map<Integer, Moto> mapaMoto = new HashMap<>();
     private static Integer id = 1;
 
@@ -39,7 +40,11 @@ public class MotoController {
     public static void adicionaMoto(Moto moto, String mensagem){
         moto.setId(id++);
         mapaMoto.put(moto.getId(), moto);
-        AppImpressao.relatorio(moto, mensagem);
+        try {
+            AppImpressao.relatorio(moto, mensagem);
+        } catch (ProblemasNaLeituraDoArquivoException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     private Collection<Moto> pegaLista(){

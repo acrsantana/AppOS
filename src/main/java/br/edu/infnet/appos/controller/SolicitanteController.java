@@ -1,6 +1,6 @@
 package br.edu.infnet.appos.controller;
 
-import br.edu.infnet.appos.model.domain.Caminhao;
+import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.Solicitante;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +20,8 @@ import java.util.Map;
 @RequestMapping("/solicitante")
 public class SolicitanteController {
 
-    Logger logger = LoggerFactory.getLogger(SolicitanteController.class);
-    private static Map<Integer, Solicitante> mapaSolicitante = new HashMap<>();
+    static Logger logger = LoggerFactory.getLogger(SolicitanteController.class);
+    private static final Map<Integer, Solicitante> mapaSolicitante = new HashMap<>();
     private static Integer id = 1;
     @GetMapping
     public String telaLista(Model model){
@@ -44,6 +43,10 @@ public class SolicitanteController {
     public static void adicionaSolicitante(Solicitante solicitante, String mensagem){
         solicitante.setId(id++);
         mapaSolicitante.put(solicitante.getId(), solicitante);
-        AppImpressao.relatorio(solicitante, mensagem);
+        try {
+            AppImpressao.relatorio(solicitante, mensagem);
+        } catch (ProblemasNaLeituraDoArquivoException e) {
+            logger.error(e.getMessage());
+        }
     }
 }

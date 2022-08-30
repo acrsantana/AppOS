@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.Caminhao;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.test.AppImpressao;
@@ -18,7 +19,7 @@ import java.util.*;
 @RequestMapping("/carro")
 public class CarroController {
 
-    Logger logger = LoggerFactory.getLogger(CarroController.class);
+    static Logger logger = LoggerFactory.getLogger(CarroController.class);
     private static Map<Integer, Carro> mapaCarro = new HashMap<>();
     private static Integer id = 1;
     @GetMapping
@@ -39,7 +40,11 @@ public class CarroController {
         carro.setId(id++);
         mapaCarro.put(carro.getId(), carro);
 
-        AppImpressao.relatorio(carro, mensagem);
+        try {
+            AppImpressao.relatorio(carro, mensagem);
+        } catch (ProblemasNaLeituraDoArquivoException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     private Collection<Carro> pegaLista(){

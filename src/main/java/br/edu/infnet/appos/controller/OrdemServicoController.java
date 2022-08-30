@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.*;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ import java.util.*;
 @RequestMapping("/ordemServico")
 public class OrdemServicoController {
 
-    Logger logger = LoggerFactory.getLogger(OrdemServicoController.class);
+    static Logger logger = LoggerFactory.getLogger(OrdemServicoController.class);
     private static Map<Integer, OrdemServico> mapaOS = new HashMap<>();
     private static Integer id = 1;
 
@@ -39,7 +40,11 @@ public class OrdemServicoController {
     public static void adicionaOS(OrdemServico os, String mensagem){
         os.setId(id++);
         mapaOS.put(os.getId(), os);
-        AppImpressao.relatorio(os, mensagem);
+        try {
+            AppImpressao.relatorio(os, mensagem);
+        } catch (ProblemasNaLeituraDoArquivoException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     private Collection<OrdemServico> pegaLista(){
