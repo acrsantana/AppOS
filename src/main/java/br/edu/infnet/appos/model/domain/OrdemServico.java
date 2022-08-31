@@ -2,13 +2,14 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.PedidoInvalidoException;
 import br.edu.infnet.appos.interfaces.IPrinter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@NoArgsConstructor
+@NoArgsConstructor @Data
 public class OrdemServico implements IPrinter{
     private String mecanico;
     private LocalDateTime data;

@@ -2,8 +2,6 @@ package br.edu.infnet.appos.model.test;
 
 import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.interfaces.IPrinter;
-import br.edu.infnet.appos.model.domain.Veiculo;
-import lombok.Data;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

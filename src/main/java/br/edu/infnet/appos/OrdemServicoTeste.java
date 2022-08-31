@@ -7,17 +7,19 @@ import br.edu.infnet.appos.model.test.AppImpressao;
 import br.edu.infnet.appos.model.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 @Order(5)
@@ -28,82 +30,39 @@ public class OrdemServicoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        try {
-            List<Servico> servicos = new ArrayList<>();
-            servicos.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
-            servicos.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
-            OrdemServico os = new OrdemServico(
-                    new Solicitante("Luna", "31999999999", true),
-                    new Carro("Sedan", true, 4),
-                    servicos);
-            os.setMecanico("Adalberto");
-            os.setGarantia(false);
-
-            OrdemServicoController.adicionaOS(os, "Adicionada O.S. 1");
-        } catch (PedidoInvalidoException | NomeNaoPreenchidoException | QuantidadePortasInvalidasException e) {
-            logger.info(e.getMessage());
-        }
+        String diretorio = "d:\\";
+        String nomeArquivo = "ordensServico.txt";
 
         try {
-            List<Servico> servicos2 = new ArrayList<>();
+            FileReader fileReader = new FileReader(diretorio + nomeArquivo);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String linha = bufferedReader.readLine();
+            String[] campos = null;
+            while (linha != null){
+                campos = linha.split(";");
+                System.out.println(Arrays.toString(campos));
+                Solicitante solicitante = new Solicitante(campos[0], campos[1], Boolean.getBoolean(campos[2]));
+                Carro carro = new Carro(campos[3], Boolean.getBoolean(campos[4]), Integer.parseInt(campos[5]));
+                List<Servico> servicos = new ArrayList<>();
+                servicos.add(new Servico(campos[8], Integer.parseInt(campos[9]), new BigDecimal(campos[10])));
+                OrdemServico os = new OrdemServico(solicitante, carro, servicos);
+                os.setMecanico(campos[6]);
+                os.setGarantia(Boolean.getBoolean(campos[7]));
+                OrdemServicoController.adicionaOS(os, "Adicionada OS do arquivo" + diretorio + nomeArquivo);
+                linha = bufferedReader.readLine();
+            }
 
-            servicos2.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
+            bufferedReader.close();
+            fileReader.close();
 
-            OrdemServico os2 = new OrdemServico(new Solicitante("Tiago", "71999999999", false), new Moto(125, "CG", 2), servicos2);
-            os2.setMecanico("Lucas");
-            os2.setGarantia(true);
-
-            OrdemServicoController.adicionaOS(os2, "Adicionada O.S. 2");
-        } catch (PedidoInvalidoException | NomeNaoPreenchidoException | QuantidadePassageirosInvalidaException e) {
-            logger.info(e.getMessage());
+        } catch (FileNotFoundException e) {
+            logger.error("Arquivo não encontrado: {}", e.getMessage());
+        } catch (IOException e) {
+            logger.error("Erro na leitura do arquivo: {}", e.getMessage());
+        } catch (NomeNaoPreenchidoException | QuantidadePortasInvalidasException | PedidoInvalidoException e) {
+            logger.error(e.getMessage());
+        } finally {
+            logger.info("Processamento finalizado");
         }
-
-        try {
-            List<Servico> servicos3 = new ArrayList<>();
-
-            servicos3.add(new Servico("Troca de óleo", 1, new BigDecimal(100)));
-            servicos3.add(new Servico("Alinhamento", 1, new BigDecimal(200)));
-            servicos3.add(new Servico("Lavagem completa", 1, new BigDecimal(80)));
-
-            OrdemServico os3 = new OrdemServico(new Solicitante("Paulo", "51999999999", true), new Caminhao("Carreta", 20000, 30), servicos3);
-            os3.setMecanico("Jairo");
-            os3.setGarantia(false);
-
-            OrdemServicoController.adicionaOS(os3, "Adicionada O.S. 3");
-        } catch (PedidoInvalidoException | NomeNaoPreenchidoException | CapacidadeCargaInvalidaException e) {
-            logger.info(e.getMessage());
-        }
-
-
-        try {
-            List<Servico> servicos4 = null;
-
-            OrdemServico os4 = new OrdemServico(
-                new Solicitante("Paulo", "51999999999", true),
-                new Caminhao("Carreta", 20000, 30),
-                servicos4);
-            os4.setMecanico("Jairo");
-            os4.setGarantia(false);
-
-            OrdemServicoController.adicionaOS(os4, "Adicionada O.S. 4");
-        } catch (PedidoInvalidoException | NomeNaoPreenchidoException | CapacidadeCargaInvalidaException e) {
-            logger.info(e.getMessage());
-        }
-
-        try {
-            List<Servico> servicos4 = new ArrayList<>();
-
-            OrdemServico os4 = new OrdemServico(
-                new Solicitante("Paulo", "51999999999", true),
-                new Caminhao("Carreta", 20000, 30),
-                servicos4);
-            os4.setMecanico("Jairo");
-            os4.setGarantia(false);
-
-            OrdemServicoController.adicionaOS(os4, "Adicionada O.S. 4");
-        } catch (PedidoInvalidoException | NomeNaoPreenchidoException | CapacidadeCargaInvalidaException e) {
-            logger.info(e.getMessage());
-        }
-
     }
 }
