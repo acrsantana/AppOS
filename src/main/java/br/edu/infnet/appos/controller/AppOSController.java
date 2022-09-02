@@ -12,4 +12,7 @@ public class AppOSController {
     public String telaHome(){
         return "home";
     }
+
+    @GetMapping("/login")
+    public String login() { return "login"; }
 }
