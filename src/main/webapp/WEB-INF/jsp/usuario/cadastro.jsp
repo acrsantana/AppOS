@@ -18,35 +18,21 @@
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
-
-    <div class="jumbotron">
-        <h1 class="display-4">Oficina Poster na Parede</h1>
-        <p class="lead">Lista dos usuários cadastrados no sistema.</p>
-        <hr class="my-4">
-    </div>
-
-    <table class="table table-striped mt-3">
-        <thead>
-        <tr>
-            <th>E-mail</th>
-            <th>Nome</th>
-            <th>Senha</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="usuario" items="${usuarios}">
-                <tr>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.nome}</td>
-                    <td>${usuario.password}</td>
-                    <td><a href="/caminhao/${usuario.email}/excluir">Excluir</a></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-
+    <form method="post" action="${pageContext.request.contextPath}/usuario/cadastro">
+        <div class="form-group">
+            <label for="email">Endereço de email</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Digite o seu email">
+            <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email. Com ninguém.</small>
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu nome...">
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control"  name="password" id="password" placeholder="Senha">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
 </div>
-
 </body>
-</html>

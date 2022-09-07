@@ -32,13 +32,13 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Cadastro</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/usuario/cadastro">Cadastro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Login</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                 </li>
             </ul>
         </div>
