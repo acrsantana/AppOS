@@ -29,4 +29,9 @@ public class UsuarioService {
 
         repository.save(usuario);
     }
+
+    public Usuario findById(String email) {
+
+        return repository.findById(email).orElseThrow();
+    }
 }

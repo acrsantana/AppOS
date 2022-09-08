@@ -8,38 +8,45 @@
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/usuario">Usuario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/ordemServico">Ordem de Serviço</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/solicitante">Solicitante</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/carro">Carro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/moto">Moto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/caminhao">Caminhão</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/veiculo">Veículo</a>
-                </li>
+                <c:if test="${not empty usuario}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/usuario">Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ordemServico">Ordem de Serviço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/solicitante">Solicitante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/carro">Carro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/moto">Moto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/caminhao">Caminhão</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/veiculo">Veículo</a>
+                    </li>
+                </c:if>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/usuario/cadastro">Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
-                </li>
+                <c:if test="${empty usuario}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/usuario/cadastro">Cadastro</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+                    </li>
+                </c:if>
+                <c:if test="${not empty usuario}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout - ${usuario}</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>
