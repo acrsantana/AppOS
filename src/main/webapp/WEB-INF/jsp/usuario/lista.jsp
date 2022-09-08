@@ -40,7 +40,7 @@
                     <td>${usuario.email}</td>
                     <td>${usuario.nome}</td>
                     <td>${usuario.password}</td>
-                    <td><a href="/caminhao/${usuario.email}/excluir">Excluir</a></td>
+                    <td><a href="/usuario/${usuario.email}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

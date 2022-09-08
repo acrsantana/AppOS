@@ -34,4 +34,8 @@ public class UsuarioService {
 
         return repository.findById(email).orElseThrow();
     }
+
+    public void delete(String email) {
+        repository.deleteById(email);
+    }
 }
