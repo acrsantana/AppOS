@@ -18,19 +18,20 @@
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
-    <form class="bg-light p-5 mt-3" method="post" action="${pageContext.request.contextPath}/usuario/cadastro">
-        <div class="form-group">
-            <label for="email">Endereço de email</label>
-            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Digite o seu email">
-            <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email. Com ninguém.</small>
-        </div>
-        <div class="form-group">
+    <form class="bg-light p-5 mt-3" method="post" action="${pageContext.request.contextPath}/solicitante/cadastro">
+        <h3>Cadastro de solicitante</h3>
+        <div class="form-group mt-3">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu nome...">
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do solicitante">
         </div>
-        <div class="form-group">
-            <label for="password">Senha</label>
-            <input type="password" class="form-control"  name="password" id="password" placeholder="Senha">
+        <div class="form-group mt-3">
+            <label for="telefone">Telefone</label>
+            <input type="tel" class="form-control" name="telefone" id="telefone" placeholder="Telefone...">
+        </div>
+        <div class="form-group form-check mt-3">
+            <input type="checkbox" class="form-check-input" name="vip" value=true>
+            <input type="hidden" class="form-check-input" name="vip" value=false>
+            <label class="form-check-label">Vip</label>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Enviar</button>
     </form>
