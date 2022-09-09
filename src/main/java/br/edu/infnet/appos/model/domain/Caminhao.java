@@ -3,13 +3,24 @@ package br.edu.infnet.appos.model.domain;
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
 import br.edu.infnet.appos.exceptions.ComprimentoInvalidoException;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-@Data
+import javax.persistence.*;
+
+@Entity @Table(name = "caminhoes")
+@AllArgsConstructor @NoArgsConstructor @Setter @Getter
 public class Caminhao extends Veiculo{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "tipo")
     private String tipo;
+    @Column(name = "capacidade")
     private float capacidadeCarga;
+    @Column(name = "comprimento")
     private float comprimento;
     private final float VALOR_BASE = 80000f;
 

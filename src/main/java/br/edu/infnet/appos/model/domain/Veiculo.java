@@ -2,16 +2,24 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.interfaces.IPrinter;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data @AllArgsConstructor @NoArgsConstructor
+import javax.persistence.*;
+
+@NoArgsConstructor @AllArgsConstructor @Getter @Setter
+@Entity @Table(name = "veiculos")
 public abstract class Veiculo implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String marca;
     private String modelo;
     private int anoFabricacao;
 
-    private Integer id;
+
 
     public abstract int getPotencia();
 

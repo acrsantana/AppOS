@@ -38,8 +38,8 @@ public class MotoController {
     }
 
     public static void adicionaMoto(Moto moto, String mensagem){
-        moto.setId(id++);
-        mapaMoto.put(moto.getId(), moto);
+//        moto.setId(id++);
+//        mapaMoto.put(moto.getId(), moto);
         try {
             AppImpressao.relatorio(moto, mensagem);
         } catch (ProblemasNaLeituraDoArquivoException e) {

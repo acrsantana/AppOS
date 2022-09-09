@@ -37,8 +37,8 @@ public class CarroController {
     }
 
     public static void adicionaCarro(Carro carro, String mensagem){
-        carro.setId(id++);
-        mapaCarro.put(carro.getId(), carro);
+//        carro.setId(id++);
+//        mapaCarro.put(carro.getId(), carro);
 
         try {
             AppImpressao.relatorio(carro, mensagem);

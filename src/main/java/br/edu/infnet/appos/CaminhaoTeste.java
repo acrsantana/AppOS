@@ -4,8 +4,10 @@ import br.edu.infnet.appos.controller.CaminhaoController;
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
 import br.edu.infnet.appos.exceptions.ComprimentoInvalidoException;
 import br.edu.infnet.appos.model.domain.Caminhao;
+import br.edu.infnet.appos.model.service.CaminhaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Order(2)
 public class CaminhaoTeste implements ApplicationRunner {
 
+    @Autowired
+    CaminhaoService caminhaoService;
     Logger logger = LoggerFactory.getLogger(CaminhaoTeste.class);
     @Override
     public void run(ApplicationArguments args) {
@@ -25,7 +29,7 @@ public class CaminhaoTeste implements ApplicationRunner {
             c1.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + c1.getPotencia());
             System.out.println("Preço :" + c1.getValor());
-            CaminhaoController.adicionaCaminhao(c1, "Caminhão 1");
+            caminhaoService.add(c1);
         } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
             logger.error(e.getMessage());
         }
@@ -37,7 +41,7 @@ public class CaminhaoTeste implements ApplicationRunner {
             c2.setAnoFabricacao(2022);
             System.out.println("Potencia do veículo: " + c2.getPotencia());
             System.out.println("Preço :" + c2.getValor());
-            CaminhaoController.adicionaCaminhao(c2, "Caminhão 2");
+            caminhaoService.add(c2);
         } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
             logger.error(e.getMessage());
         }
@@ -49,7 +53,7 @@ public class CaminhaoTeste implements ApplicationRunner {
             c3.setAnoFabricacao(2010);
             System.out.println("Potencia do veículo: " + c3.getPotencia());
             System.out.println("Preço :" + c3.getValor());
-            CaminhaoController.adicionaCaminhao(c3, "Caminhão 3");
+            caminhaoService.add(c3);
         } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
             logger.error(e.getMessage());
         }
@@ -61,7 +65,7 @@ public class CaminhaoTeste implements ApplicationRunner {
             c4.setAnoFabricacao(2010);
             System.out.println("Potencia do veículo: " + c4.getPotencia());
             System.out.println("Preço :" + c4.getValor());
-            CaminhaoController.adicionaCaminhao(c4, "Caminhão 3");
+            caminhaoService.add(c4);
         } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
             logger.error(e.getMessage());
         }
@@ -73,7 +77,7 @@ public class CaminhaoTeste implements ApplicationRunner {
             c5.setAnoFabricacao(2010);
             System.out.println("Potencia do veículo: " + c5.getPotencia());
             System.out.println("Preço :" + c5.getValor());
-            CaminhaoController.adicionaCaminhao(c5, "Caminhão 3");
+            caminhaoService.add(c5);
         } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
             logger.error(e.getMessage());
         }

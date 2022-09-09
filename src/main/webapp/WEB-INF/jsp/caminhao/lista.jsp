@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,25 +20,33 @@
 <div class="container mt-3">
 
     <div class="jumbotron">
-        <h1 class="display-4">Oficina Poster na Parede</h1>
-        <p class="lead">Lista dos caminhões que estão atualmente sendo atendidos na oficina.</p>
-        <hr class="my-4">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="display-4">Oficina Poster na Parede</h1>
+                <p class="lead">Lista dos caminhões que estão atualmente sendo atendidos na oficina.</p>
+
+            </div>
+            <div class="col-2">
+                <a href="caminhao/cadastro" type="button" class="btn btn-primary m-5">Cadastrar</a>
+            </div>
+            <hr class="my-4">
+        </div>
     </div>
 
-    <table class="table table-striped mt-3">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Ano Fabricação</th>
-            <th>Tipo</th>
-            <th>Capacidade (Kg)</th>
-            <th>Comprimento (M)</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano Fabricação</th>
+                <th>Tipo</th>
+                <th>Capacidade (Kg)</th>
+                <th>Comprimento (M)</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
             <c:forEach var="caminhao" items="${listagem}">
                 <tr>
                     <td>${caminhao.id}</td>
@@ -51,10 +59,10 @@
                     <td><a href="/caminhao/${caminhao.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
 </body>
 </html>
