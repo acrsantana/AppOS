@@ -13,29 +13,7 @@ public class AppImpressao {
     public static void relatorio(IPrinter objetoImprimivel, String mensagem) throws ProblemasNaLeituraDoArquivoException {
         System.out.println(mensagem);
         objetoImprimivel.impressao();
-        String diretorio = "d:\\";
-        String nomeArquivo = "ordensServico.txt";
-        try {
-            FileReader fileReader = new FileReader(diretorio + nomeArquivo);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String linha = bufferedReader.readLine();
-            System.out.println(linha);
-            while (linha != null){
-                System.out.println(linha);
-                linha = bufferedReader.readLine();
-            }
-
-            bufferedReader.close();
-            fileReader.close();
-
-        } catch (FileNotFoundException e) {
-            throw new ProblemasNaLeituraDoArquivoException("Arquivo não encontrado");
-        } catch (IOException e) {
-            throw new ProblemasNaLeituraDoArquivoException("Erro na leitura do arquivo");
-        } finally {
-            System.out.println("Processamento finalizado");
-        }
     }
 
 }

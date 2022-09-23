@@ -1,6 +1,6 @@
 package br.edu.infnet.appos.controller;
 
-import br.edu.infnet.appos.model.service.CarroService;
+import br.edu.infnet.appos.model.service.VeiculoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +15,23 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/carro")
-public class CarroController {
+@RequestMapping("/veiculo")
+public class VeiculoController {
 
-    static Logger logger = LoggerFactory.getLogger(CarroController.class);
-
-    @Autowired
-    private CarroService carroService;
+    @Autowired VeiculoService veiculoService;
+    static Logger logger = LoggerFactory.getLogger(VeiculoController.class);
     @GetMapping
     public String telaLista(Model model){
 
-        model.addAttribute("listagem", carroService.findAll());
-        return "carro/lista";
+        model.addAttribute("listagem", veiculoService.findAll());
+        return "veiculo/lista";
     }
 
     @GetMapping("{id}/excluir")
-    public RedirectView excluiCarro(@PathVariable Integer id){
-        logger.info("Excluir carro {}", id);
-        carroService.delete(id);
-        return new RedirectView("/carro");
+    public RedirectView excluir(@PathVariable Integer id){
+        logger.info("Excluir veículo {}", id);
+        veiculoService.delete(id);
+        return new RedirectView("/veiculo");
     }
 
-    @PostMapping("cadastro")
-    public String adicionar(HttpServletRequest request){
-        carroService.add(request);
-        return "redirect:/carro";
-    }
 }

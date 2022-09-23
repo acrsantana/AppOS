@@ -1,0 +1,3 @@
+Coupe|true|3|Tesla|Model S|2021
+SUV|true|4|Mercedez Benz|G63 AMG|2022
+Hatch|false|2|Chevrolet|Celta|2008

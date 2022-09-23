@@ -26,9 +26,6 @@
                 <p class="lead">Lista dos caminhões que estão atualmente sendo atendidos na oficina.</p>
 
             </div>
-            <div class="col-2">
-                <a href="caminhao/cadastro" type="button" class="btn btn-primary m-5">Cadastrar</a>
-            </div>
             <hr class="my-4">
         </div>
     </div>
@@ -40,23 +37,17 @@
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Ano Fabricação</th>
-                <th>Tipo</th>
-                <th>Capacidade (Kg)</th>
-                <th>Comprimento (M)</th>
-                <th>Ações</th>
             </tr>
             </thead>
             <tbody>
+            <jsp:useBean id="listagem" scope="request" type="java.util.List"/>
             <c:forEach var="veiculo" items="${listagem}">
                 <tr>
                     <td>${veiculo.id}</td>
                     <td>${veiculo.marca}</td>
                     <td>${veiculo.modelo}</td>
                     <td>${veiculo.anoFabricacao}</td>
-                    <td>${veiculo.tipo}</td>
-                    <td>${veiculo.capacidadeCarga}</td>
-                    <td>${veiculo.comprimento}</td>
-                    <td><a href="/caminhao/${veiculo.id}/excluir">Excluir</a></td>
+                    <td><a href="/veiculo/${veiculo.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
             </tbody>

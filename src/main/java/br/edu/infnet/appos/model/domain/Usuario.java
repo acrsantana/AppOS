@@ -1,18 +1,20 @@
 package br.edu.infnet.appos.model.domain;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Data
-@Entity
-@Table(name = "usuarios")
+@Getter @Setter @RequiredArgsConstructor @NoArgsConstructor
+@Entity @Table(name = "usuarios")
 public class Usuario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @NonNull
     private String email;
+    @NonNull
     private String nome;
+    @NonNull
     private String password;
 }

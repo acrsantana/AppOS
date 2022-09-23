@@ -2,7 +2,15 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
 import lombok.Data;
-@Data
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity @Table(name = "carros")
+@NoArgsConstructor @Setter @Getter
 public class Carro extends Veiculo{
     private String tipo;
     private boolean arCondicionado;

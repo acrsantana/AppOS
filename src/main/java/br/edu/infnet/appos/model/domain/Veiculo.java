@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor @AllArgsConstructor @Getter @Setter
 @Entity @Table(name = "veiculos")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Veiculo implements IPrinter {
 
     @Id

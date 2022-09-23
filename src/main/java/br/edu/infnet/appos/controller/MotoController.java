@@ -1,53 +1,48 @@
 package br.edu.infnet.appos.controller;
 
-import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
-import br.edu.infnet.appos.model.domain.Moto;
-import br.edu.infnet.appos.model.test.AppImpressao;
+import br.edu.infnet.appos.model.service.MotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/moto")
 public class MotoController {
     static Logger logger = LoggerFactory.getLogger(MotoController.class);
-    private static Map<Integer, Moto> mapaMoto = new HashMap<>();
-    private static Integer id = 1;
+
+    @Autowired
+    private MotoService motoService;
 
     @GetMapping
     public String telaLista(Model model){
 
-        model.addAttribute("listagem", pegaLista());
+        model.addAttribute("listagem", motoService.findAll());
         return "moto/lista";
     }
 
     @GetMapping("{id}/excluir")
-    public RedirectView excluiMoto(@PathVariable Integer id){
+    public String excluiMoto(@PathVariable Integer id){
         logger.info("Excluir moto {}", id);
-        mapaMoto.remove(id);
-        return new RedirectView("/moto");
+        motoService.delete(id);
+        return "redirect:/moto";
     }
 
-    public static void adicionaMoto(Moto moto, String mensagem){
-//        moto.setId(id++);
-//        mapaMoto.put(moto.getId(), moto);
-        try {
-            AppImpressao.relatorio(moto, mensagem);
-        } catch (ProblemasNaLeituraDoArquivoException e) {
-            logger.error(e.getMessage());
-        }
+    @GetMapping("/cadastro")
+    public String telaCadastro(){
+        return "moto/cadastro";
     }
 
-    private Collection<Moto> pegaLista(){
-        return mapaMoto.values();
+    @PostMapping("/cadastro") public String cadastrar(HttpServletRequest request) {
+        logger.info("Inserindo solicitante no banco de dados");
+        motoService.add(request);
+        return "redirect:/moto";
     }
 }

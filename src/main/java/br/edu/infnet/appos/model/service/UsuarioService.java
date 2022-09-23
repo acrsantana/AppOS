@@ -13,9 +13,9 @@ import java.util.List;
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioRepository usuarioRepository;
     public List<Usuario> findAll() {
-        return repository.findAll();
+        return usuarioRepository.findAll();
     }
 
 
@@ -24,18 +24,25 @@ public class UsuarioService {
         usuario.setEmail(request.getParameter("email"));
         usuario.setNome(request.getParameter("nome"));
         usuario.setPassword(request.getParameter("password"));
-        if (repository.existsById(usuario.getEmail()))
+        if (usuarioRepository.existsById(usuario.getEmail()))
             throw new UsuarioJaCadastradoException("E-mail " + usuario.getEmail() + " já cadastrado no sistema");
 
-        repository.save(usuario);
+        usuarioRepository.save(usuario);
+    }
+
+    public void cadastrar(Usuario usuario) throws UsuarioJaCadastradoException {
+        if (usuarioRepository.existsByEmail(usuario.getEmail()))
+            throw new UsuarioJaCadastradoException("E-mail " + usuario.getEmail() + " já cadastrado no sistema");
+
+        usuarioRepository.save(usuario);
     }
 
     public Usuario findById(String email) {
 
-        return repository.findById(email).orElseThrow();
+        return usuarioRepository.findById(email).orElseThrow();
     }
 
     public void delete(String email) {
-        repository.deleteById(email);
+        usuarioRepository.deleteById(email);
     }
 }

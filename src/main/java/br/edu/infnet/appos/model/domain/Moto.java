@@ -2,8 +2,15 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity @Table(name = "motos")
+@NoArgsConstructor @Setter @Getter
 public class Moto extends Veiculo{
     private int cilindrada;
     private String estilo;

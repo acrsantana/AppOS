@@ -3,9 +3,11 @@ package br.edu.infnet.appos;
 import br.edu.infnet.appos.controller.MotoController;
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
 import br.edu.infnet.appos.model.domain.Moto;
+import br.edu.infnet.appos.model.service.MotoService;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Order(3)
 public class MotoTeste implements ApplicationRunner {
 
+    @Autowired
+    private MotoService motoService;
     Logger logger = LoggerFactory.getLogger(MotoTeste.class);
     @Override
     public void run(ApplicationArguments args) {
@@ -25,7 +29,7 @@ public class MotoTeste implements ApplicationRunner {
             m1.setModelo("PCX");
             m1.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + m1.getPotencia());
-            MotoController.adicionaMoto(m1, "Moto 1 - " + m1.getMarca());
+            motoService.add(m1);
         } catch (QuantidadePassageirosInvalidaException e) {
             logger.error(e.getMessage());
         }
@@ -37,7 +41,7 @@ public class MotoTeste implements ApplicationRunner {
             m2.setModelo("Ninja");
             m2.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + m2.getPotencia());
-            MotoController.adicionaMoto(m2, "Moto 2 - " + m2.getMarca());
+            motoService.add(m2);
         } catch (QuantidadePassageirosInvalidaException e) {
             logger.error(e.getMessage());
         }
@@ -49,7 +53,7 @@ public class MotoTeste implements ApplicationRunner {
             m3.setModelo("CBR");
             m3.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + m3.getPotencia());
-            MotoController.adicionaMoto(m3, "Moto 3 - " + m3.getMarca());
+            motoService.add(m3);
         } catch (QuantidadePassageirosInvalidaException e) {
             logger.error(e.getMessage());
         }
@@ -60,7 +64,7 @@ public class MotoTeste implements ApplicationRunner {
             m4.setModelo("CBR");
             m4.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + m4.getPotencia());
-            MotoController.adicionaMoto(m4, "Moto 4 - " + m4.getMarca());
+            motoService.add(m4);
         } catch (QuantidadePassageirosInvalidaException e) {
             logger.error(e.getMessage());
         }
@@ -71,7 +75,7 @@ public class MotoTeste implements ApplicationRunner {
             m5.setModelo("CBR");
             m5.setAnoFabricacao(2020);
             System.out.println("Potencia do veículo: " + m5.getPotencia());
-            MotoController.adicionaMoto(m5, "Moto 5 - " + m5.getMarca());
+            motoService.add(m5);
         } catch (QuantidadePassageirosInvalidaException e) {
             logger.error(e.getMessage());
         }
