@@ -31,7 +31,7 @@ public class AppOSController {
     @PostMapping("/login")
     public String autorizar(Model model, @RequestParam String email, @RequestParam String password) {
         try {
-            Usuario usuario = usuarioService.findById(email);
+            Usuario usuario = usuarioService.findByEmail(email);
             if (usuario.getPassword().equals(password))
                 model.addAttribute("usuario", usuario.getNome());
             else {

@@ -1,0 +1,3 @@
+50|Scooter|1|Honda|Cinquentinha|2022
+250|Passeio|2|Honda|CBR|2019
+1000|Racer|2|Kawasaki|Ninja|2020

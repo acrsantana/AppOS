@@ -2,6 +2,8 @@ package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.controller.MotoController;
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
+import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
+import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.service.MotoService;
 import br.edu.infnet.appos.model.test.AppImpressao;
@@ -13,8 +15,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
-@Order(3)
+@Order(2)
 public class MotoTeste implements ApplicationRunner {
 
     @Autowired
@@ -23,62 +30,36 @@ public class MotoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
+        File file = new File("src\\main\\resources\\files\\moto.txt");
         try {
-            Moto m1 = new Moto(125, "Scooter", 2);
-            m1.setMarca("Honda");
-            m1.setModelo("PCX");
-            m1.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + m1.getPotencia());
-            motoService.add(m1);
-        } catch (QuantidadePassageirosInvalidaException e) {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String linha = bufferedReader.readLine();
+            String[] campos;
+            while (linha != null){
+                campos = linha.split("\\|");
+                try {
+
+                    Moto moto = new Moto(Integer.parseInt(campos[0]), campos[1], Integer.parseInt(campos[2]));
+                    moto.setMarca(campos[3]);
+                    moto.setModelo(campos[4]);
+                    moto.setAnoFabricacao(Integer.parseInt(campos[5]));
+                    System.out.println("Potencia do veículo: " + moto.getPotencia());
+                    motoService.add(moto);
+                } catch (QuantidadePassageirosInvalidaException e) {
+                    logger.error(e.getMessage());
+                }
+                linha = bufferedReader.readLine();
+            }
+
+            bufferedReader.close();
+            fileReader.close();
+
+        } catch (IOException e) {
             logger.error(e.getMessage());
+        } finally {
+            logger.info("Carga do arquivo finalizada");
         }
-
-
-        try {
-            Moto m2 = new Moto(600, "Cafe Racer", 2);
-            m2.setMarca("Kawasaki");
-            m2.setModelo("Ninja");
-            m2.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + m2.getPotencia());
-            motoService.add(m2);
-        } catch (QuantidadePassageirosInvalidaException e) {
-            logger.error(e.getMessage());
-        }
-
-
-        try {
-            Moto m3 = new Moto(1000, "Super Esportiva", 2);
-            m3.setMarca("Honda");
-            m3.setModelo("CBR");
-            m3.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + m3.getPotencia());
-            motoService.add(m3);
-        } catch (QuantidadePassageirosInvalidaException e) {
-            logger.error(e.getMessage());
-        }
-
-        try {
-            Moto m4 = new Moto(1000, "Super Esportiva", 3);
-            m4.setMarca("Honda");
-            m4.setModelo("CBR");
-            m4.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + m4.getPotencia());
-            motoService.add(m4);
-        } catch (QuantidadePassageirosInvalidaException e) {
-            logger.error(e.getMessage());
-        }
-
-        try {
-            Moto m5 = new Moto(1000, "Super Esportiva", 0);
-            m5.setMarca("Honda");
-            m5.setModelo("CBR");
-            m5.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + m5.getPotencia());
-            motoService.add(m5);
-        } catch (QuantidadePassageirosInvalidaException e) {
-            logger.error(e.getMessage());
-        }
-
     }
 }

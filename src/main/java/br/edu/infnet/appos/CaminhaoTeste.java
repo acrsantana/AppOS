@@ -3,7 +3,9 @@ package br.edu.infnet.appos;
 import br.edu.infnet.appos.controller.CaminhaoController;
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
 import br.edu.infnet.appos.exceptions.ComprimentoInvalidoException;
+import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
 import br.edu.infnet.appos.model.domain.Caminhao;
+import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.service.CaminhaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +15,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
-@Order(2)
+@Order(3)
 public class CaminhaoTeste implements ApplicationRunner {
 
     @Autowired
@@ -22,65 +29,37 @@ public class CaminhaoTeste implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(CaminhaoTeste.class);
     @Override
     public void run(ApplicationArguments args) {
-        try {
-            Caminhao c1 = new Caminhao("Baú", 1000.0f, 7.0f);
-            c1.setMarca("Mercedez Benz");
-            c1.setModelo("Refrigerado");
-            c1.setAnoFabricacao(2020);
-            System.out.println("Potencia do veículo: " + c1.getPotencia());
-            System.out.println("Preço :" + c1.getValor());
-            caminhaoService.add(c1);
-        } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
-            logger.error(e.getMessage());
-        }
 
+        File file = new File("src\\main\\resources\\files\\caminhao.txt");
         try {
-            Caminhao c2 = new Caminhao("Carreta", 2000.0f, 10.0f);
-            c2.setMarca("Hyundai");
-            c2.setModelo("Aberto");
-            c2.setAnoFabricacao(2022);
-            System.out.println("Potencia do veículo: " + c2.getPotencia());
-            System.out.println("Preço :" + c2.getValor());
-            caminhaoService.add(c2);
-        } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
-            logger.error(e.getMessage());
-        }
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        try {
-            Caminhao c3 = new Caminhao("Bitrem", 4000.0f, 12.0f);
-            c3.setMarca("Volkswagen");
-            c3.setModelo("Super");
-            c3.setAnoFabricacao(2010);
-            System.out.println("Potencia do veículo: " + c3.getPotencia());
-            System.out.println("Preço :" + c3.getValor());
-            caminhaoService.add(c3);
-        } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
-            logger.error(e.getMessage());
-        }
+            String linha = bufferedReader.readLine();
+            String[] campos;
+            while (linha != null){
+                campos = linha.split("\\|");
+                try {
 
-        try {
-            Caminhao c4 = new Caminhao("Bitrem", 40f, 12.0f);
-            c4.setMarca("Volkswagen");
-            c4.setModelo("Super");
-            c4.setAnoFabricacao(2010);
-            System.out.println("Potencia do veículo: " + c4.getPotencia());
-            System.out.println("Preço :" + c4.getValor());
-            caminhaoService.add(c4);
-        } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
-            logger.error(e.getMessage());
-        }
+                    Caminhao caminhao = new Caminhao(campos[0], Float.parseFloat(campos[1]), Float.parseFloat(campos[2]));
+                    caminhao.setMarca(campos[3]);
+                    caminhao.setModelo(campos[4]);
+                    caminhao.setAnoFabricacao(Integer.parseInt(campos[5]));
+                    System.out.println("Potencia do veículo: " + caminhao.getPotencia());
+                    caminhaoService.add(caminhao);
+                } catch (CapacidadeCargaInvalidaException e) {
+                    logger.error(e.getMessage());
+                }
+                linha = bufferedReader.readLine();
+            }
 
-        try {
-            Caminhao c5 = new Caminhao("Bitrem", 600f, 4f);
-            c5.setMarca("Volkswagen");
-            c5.setModelo("Super");
-            c5.setAnoFabricacao(2010);
-            System.out.println("Potencia do veículo: " + c5.getPotencia());
-            System.out.println("Preço :" + c5.getValor());
-            caminhaoService.add(c5);
-        } catch (CapacidadeCargaInvalidaException | ComprimentoInvalidoException e){
-            logger.error(e.getMessage());
-        }
+            bufferedReader.close();
+            fileReader.close();
 
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        } finally {
+            logger.info("Carga do arquivo finalizada");
+        }
     }
 }

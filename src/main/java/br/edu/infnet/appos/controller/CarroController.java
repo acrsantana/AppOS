@@ -36,6 +36,10 @@ public class CarroController {
         return new RedirectView("/carro");
     }
 
+    @GetMapping("cadastro")
+    public String telaCadastro(){
+        return "carro/cadastro";
+    }
     @PostMapping("cadastro")
     public String adicionar(HttpServletRequest request){
         carroService.add(request);

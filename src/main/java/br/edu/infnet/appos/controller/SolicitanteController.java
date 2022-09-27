@@ -30,7 +30,7 @@ import java.util.List;
     @PostMapping("/cadastro") public String cadastrar(@RequestParam String nome, @RequestParam String telefone, @RequestParam boolean vip) {
         logger.info("Inserindo solicitante no banco de dados");
         try {
-            solicitanteService.cadastrar(new Solicitante(nome, telefone, vip));
+            solicitanteService.add(new Solicitante(nome, telefone, vip));
         } catch (NomeNaoPreenchidoException e) {
             logger.error(e.getMessage());
         }

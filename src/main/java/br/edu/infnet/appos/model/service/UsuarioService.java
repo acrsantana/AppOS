@@ -24,7 +24,7 @@ public class UsuarioService {
         usuario.setEmail(request.getParameter("email"));
         usuario.setNome(request.getParameter("nome"));
         usuario.setPassword(request.getParameter("password"));
-        if (usuarioRepository.existsById(usuario.getEmail()))
+        if (usuarioRepository.existsByEmail(usuario.getEmail()))
             throw new UsuarioJaCadastradoException("E-mail " + usuario.getEmail() + " já cadastrado no sistema");
 
         usuarioRepository.save(usuario);
@@ -37,12 +37,12 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario findById(String email) {
+    public Usuario findByEmail(String email) {
 
-        return usuarioRepository.findById(email).orElseThrow();
+        return usuarioRepository.findByEmail(email).orElseThrow();
     }
 
-    public void delete(String email) {
-        usuarioRepository.deleteById(email);
+    public void delete(Integer id) {
+        usuarioRepository.deleteById(id);
     }
 }

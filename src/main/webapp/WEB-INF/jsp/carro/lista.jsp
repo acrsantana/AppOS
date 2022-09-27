@@ -20,9 +20,17 @@
 <div class="container mt-3">
 
     <div class="jumbotron">
-        <h1 class="display-4">Oficina Poster na Parede</h1>
-        <p class="lead">Lista dos carros que estão atualmente sendo atendidos na oficina.</p>
-        <hr class="my-4">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="display-4">Oficina Poster na Parede</h1>
+                <p class="lead">Lista dos carros que estão atualmente sendo atendidos na oficina.</p>
+
+            </div>
+            <div class="col-2">
+                <a href="carro/cadastro" type="button" class="btn btn-primary m-5">Cadastrar</a>
+            </div>
+            <hr class="my-4">
+        </div>
     </div>
 
     <table class="table table-striped mt-3">

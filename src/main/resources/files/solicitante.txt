@@ -1,0 +1,5 @@
+Augusto Cezar Ribeiro Santana|123456789|true
+Luna Luneta|897654123|true
+Jojo Colonia|987654321|false
+Carlao da Oficina|123374658|false
+Jaqueline Vieira|123746532|true

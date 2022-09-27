@@ -48,9 +48,9 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/{email}/excluir")
-    public String excluir(@PathVariable String email) {
-        usuarioService.delete(email);
+    @GetMapping("/{id}/excluir")
+    public String excluir(@PathVariable Integer id) {
+        usuarioService.delete(id);
         return "redirect:/usuario";
 
     }
