@@ -5,6 +5,7 @@ import br.edu.infnet.appos.exceptions.NomeNaoPreenchidoException;
 import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Solicitante;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.SolicitanteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,17 +31,20 @@ public class SolicitanteTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
 
         File file = new File("src\\main\\resources\\files\\solicitante.txt");
+
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String linha = bufferedReader.readLine();
             String[] campos;
+            Usuario usuario = new Usuario();
+            usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
                 try {
-
                     Solicitante solicitante = new Solicitante(campos[0], campos[1], Boolean.parseBoolean(campos[2]));
+                    solicitante.setUsuario(usuario);
                     solicitanteService.add(solicitante);
                 } catch (NomeNaoPreenchidoException e) {
                     throw new RuntimeException(e);

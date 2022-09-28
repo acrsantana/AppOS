@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
-                <c:if test="${not empty usuario}">
+                <c:if test="${not empty usuario.nome}">
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/usuario">Usuario</a>
                     </li>
@@ -33,7 +33,7 @@
                 </c:if>
             </ul>
             <ul class="navbar-nav">
-                <c:if test="${empty usuario}">
+                <c:if test="${empty usuario.nome}">
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/usuario/cadastro">Cadastro</a>
                     </li>
@@ -42,9 +42,9 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
                     </li>
                 </c:if>
-                <c:if test="${not empty usuario}">
+                <c:if test="${not empty usuario.nome}">
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout - ${usuario}</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout - ${usuario.nome}</a>
                     </li>
                 </c:if>
             </ul>

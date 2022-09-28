@@ -20,6 +20,8 @@ public class AppOSController {
     @Autowired
     UsuarioService usuarioService;
 
+    Usuario usuario;
+
     @GetMapping
     public String telaHome(){
         return "home";
@@ -31,12 +33,13 @@ public class AppOSController {
     @PostMapping("/login")
     public String autorizar(Model model, @RequestParam String email, @RequestParam String password) {
         try {
-            Usuario usuario = usuarioService.findByEmail(email);
+            usuario = usuarioService.findByEmail(email);
             if (usuario.getPassword().equals(password))
-                model.addAttribute("usuario", usuario.getNome());
+                model.addAttribute("usuario", usuario);
             else {
                 logger.error("Senha inválida");
-                model.addAttribute("usuario", "");
+                usuario.setNome("");
+                model.addAttribute("usuario", usuario);
                 return "login";
             }
 
@@ -50,7 +53,13 @@ public class AppOSController {
 
     @GetMapping("/logout")
     public String logout(Model model) {
-        model.addAttribute("usuario", "");
+        usuario.setNome("");
+        model.addAttribute("usuario", usuario);
         return "redirect:/";
+    }
+
+    @ModelAttribute("usuario")
+    public Usuario getUsuario() {
+        return new Usuario();
     }
 }

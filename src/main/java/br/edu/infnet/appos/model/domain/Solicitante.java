@@ -20,7 +20,8 @@ public class Solicitante implements IPrinter {
     private String telefone;
     private boolean vip;
 
-
+    @OneToOne
+    private Usuario usuario;
 
     public Solicitante(String nome, String telefone, boolean vip) throws NomeNaoPreenchidoException {
         if (Objects.isNull(nome))

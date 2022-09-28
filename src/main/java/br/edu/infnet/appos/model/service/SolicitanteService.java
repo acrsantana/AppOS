@@ -1,6 +1,7 @@
 package br.edu.infnet.appos.model.service;
 
 import br.edu.infnet.appos.model.domain.Solicitante;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.repository.SolicitanteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,11 @@ public class SolicitanteService {
     public List<Solicitante> findAll() {
         logger.info("Buscando solicitantes cadastrados");
         return solicitanteRepository.findAll();
+    }
+
+    public List<Solicitante> findAll(Usuario usuario) {
+        logger.info("Buscando solicitantes cadastrados");
+        return solicitanteRepository.findSolicitanteByUsuario(usuario);
     }
 
     public void delete(Integer id) {
