@@ -2,6 +2,7 @@ package br.edu.infnet.appos.controller;
 
 import br.edu.infnet.appos.exceptions.ProblemasNaLeituraDoArquivoException;
 import br.edu.infnet.appos.model.domain.*;
+import br.edu.infnet.appos.model.dto.OrdemServicoDto;
 import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/ordemServico")
@@ -26,7 +29,8 @@ public class OrdemServicoController {
     @GetMapping
     public String telaLista(Model model){
 
-        model.addAttribute("listagem", pegaLista());
+        List<OrdemServicoDto> list = pegaLista().stream().map(OrdemServicoDto::new).collect(Collectors.toList());
+        model.addAttribute("listagem", list);
         return "ordemServico/lista";
     }
 

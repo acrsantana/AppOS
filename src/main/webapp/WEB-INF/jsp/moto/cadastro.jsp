@@ -18,19 +18,19 @@
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
-    <form class="bg-light p-5 mt-3" method="post" action="${pageContext.request.contextPath}/carro/cadastro">
-        <h3>Cadastro de carros</h3>
+    <form class="bg-light p-5 mt-3" method="post" action="${pageContext.request.contextPath}/moto/cadastro">
+        <h3>Cadastro de motos</h3>
         <div class="row">
             <div class="col">
                 <div class="form-group mt-3">
                     <label for="marca">Marca</label>
-                    <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca do carro">
+                    <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca da moto">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group mt-3">
                     <label for="modelo">Modelo</label>
-                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo do carro">
+                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo da moto">
                 </div>
             </div>
             <div class="col">
@@ -43,23 +43,20 @@
         <div class="row">
             <div class="col">
                 <div class="form-group mt-3">
-                    <label for="tipo">Tipo</label>
-                    <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo de carro">
+                    <label for="cilindrada">Cilindrada</label>
+                    <input type="text" class="form-control" name="cilindrada" id="cilindrada" placeholder="Cilindrada">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group mt-3">
-                    <label for="arCondicionado">Ar Condicionado</label>
-                        <select class="form-control" name="arCondicionado" id="arCondicionado">
-                            <option value="true">Sim</option>
-                            <option value="false">Não</option>
-                        </select>
+                    <label for="estilo">Estilo</label>
+                    <input type="text" class="form-control" name="estilo" id="estilo" placeholder="Estilo">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group mt-3">
-                    <label for="portas">Portas</label>
-                    <input type="text" class="form-control" name="portas" id="portas" placeholder="portas">
+                    <label for="quantidadeDePassageiros">Qtde. Passageiros</label>
+                    <input type="text" class="form-control" name="quantidadeDePassageiros" id="quantidadeDePassageiros" placeholder="Quantidade de passageiros">
                 </div>
             </div>
         </div>

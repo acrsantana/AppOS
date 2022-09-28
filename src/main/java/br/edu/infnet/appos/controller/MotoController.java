@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.service.MotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class MotoController {
         return "moto/cadastro";
     }
 
-    @PostMapping("/cadastro") public String cadastrar(HttpServletRequest request) {
+    @PostMapping("/cadastro") public String cadastrar(Moto request) {
         logger.info("Inserindo solicitante no banco de dados");
         motoService.add(request);
         return "redirect:/moto";

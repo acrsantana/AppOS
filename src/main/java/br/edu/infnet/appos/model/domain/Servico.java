@@ -10,13 +10,13 @@ import java.util.Objects;
 @Data @AllArgsConstructor
 public class Servico implements IPrinter {
     private String nomeServico;
-    private Integer tempoDeExecução;
+    private Integer tempoDeExecucao;
     private BigDecimal valor;
 
 
     @Override
     public String toString() {
-        return nomeServico + ";" + tempoDeExecução + ";" + valor;
+        return nomeServico + ";" + tempoDeExecucao + ";" + valor;
     }
 
     @Override
@@ -24,12 +24,12 @@ public class Servico implements IPrinter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Servico servico = (Servico) o;
-        return Objects.equals(nomeServico, servico.nomeServico) && Objects.equals(tempoDeExecução, servico.tempoDeExecução);
+        return Objects.equals(nomeServico, servico.nomeServico) && Objects.equals(tempoDeExecucao, servico.tempoDeExecucao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nomeServico, tempoDeExecução);
+        return Objects.hash(nomeServico, tempoDeExecucao);
     }
 
     @Override
