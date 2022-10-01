@@ -26,7 +26,13 @@ public class MotoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        File file = new File("src/main/resources/files/moto.txt");
+        String pathname;
+        if (System.getProperty("os.name").equals("Windows 11")){
+            pathname = "src\\main\\resources\\files\\moto.txt";
+        } else {
+            pathname = "src/main/resources/files/moto.txt";
+        }
+        File file = new File(pathname);
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

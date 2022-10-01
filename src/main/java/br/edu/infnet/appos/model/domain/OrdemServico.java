@@ -5,15 +5,19 @@ import br.edu.infnet.appos.interfaces.IPrinter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor @Data
+//@Entity @Table(name = "ordens_de_servico")
 public class OrdemServico implements IPrinter{
-    private String mecanico;
+
     private LocalDateTime data;
     private boolean garantia;
+    private String mecanico;
     private Solicitante solicitante;
     private Veiculo veiculo;
     private List<Servico> servicos;

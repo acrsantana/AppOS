@@ -25,7 +25,13 @@ public class CarroTeste implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(CarroTeste.class);
     @Override
     public void run(ApplicationArguments args) {
-        File file = new File("src/main/resources/files/carro.txt");
+        String pathname;
+        if (System.getProperty("os.name").equals("Windows 11")){
+            pathname = "src\\main\\resources\\files\\carro.txt";
+        } else {
+            pathname = "src/main/resources/files/carro.txt";
+        }
+        File file = new File(pathname);
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

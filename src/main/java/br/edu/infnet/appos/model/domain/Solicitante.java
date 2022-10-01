@@ -24,6 +24,8 @@ public class Solicitante implements IPrinter {
 
     @OneToOne
     private Usuario usuario;
+    @ManyToOne
+    private Veiculo veiculo;
 
     public Solicitante(SolicitanteDto solicitanteDto){
         BeanUtils.copyProperties(solicitanteDto, this);

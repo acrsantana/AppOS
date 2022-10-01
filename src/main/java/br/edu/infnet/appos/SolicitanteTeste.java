@@ -30,7 +30,13 @@ public class SolicitanteTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        File file = new File("src/main/resources/files/solicitante.txt");
+        String pathname;
+        if (System.getProperty("os.name").equals("Windows 11")){
+            pathname = "src\\main\\resources\\files\\solicitante.txt";
+        } else {
+            pathname = "src/main/resources/files/solicitante.txt";
+        }
+        File file = new File(pathname);
 
         try {
             FileReader fileReader = new FileReader(file);

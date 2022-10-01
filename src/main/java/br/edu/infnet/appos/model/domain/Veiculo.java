@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor @AllArgsConstructor @Getter @Setter
 @Entity @Table(name = "veiculos")
@@ -19,7 +20,8 @@ public abstract class Veiculo implements IPrinter {
     private String marca;
     private String modelo;
     private int anoFabricacao;
-
+    @OneToMany
+    private List<Solicitante> solicitante;
 
 
     public abstract int getPotencia();

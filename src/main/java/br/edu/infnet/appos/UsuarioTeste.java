@@ -27,7 +27,13 @@ public class UsuarioTeste implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(UsuarioTeste.class);
     @Override
     public void run(ApplicationArguments args) {
-        File file = new File("src/main/resources/files/usuarios.txt");
+        String pathname;
+        if (System.getProperty("os.name").equals("Windows 11")){
+            pathname = "src\\main\\resources\\files\\usuarios.txt";
+        } else {
+            pathname = "src/main/resources/files/usuarios.txt";
+        }
+        File file = new File(pathname);
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
