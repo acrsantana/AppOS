@@ -30,7 +30,7 @@ public class SolicitanteTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        File file = new File("src\\main\\resources\\files\\solicitante.txt");
+        File file = new File("src/main/resources/files/solicitante.txt");
 
         try {
             FileReader fileReader = new FileReader(file);

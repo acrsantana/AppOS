@@ -1,11 +1,7 @@
 package br.edu.infnet.appos;
 
-import br.edu.infnet.appos.controller.CaminhaoController;
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
-import br.edu.infnet.appos.exceptions.ComprimentoInvalidoException;
-import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
 import br.edu.infnet.appos.model.domain.Caminhao;
-import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.service.CaminhaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +26,7 @@ public class CaminhaoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        File file = new File("src\\main\\resources\\files\\caminhao.txt");
+        File file = new File("src/main/resources/files/caminhao.txt");
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

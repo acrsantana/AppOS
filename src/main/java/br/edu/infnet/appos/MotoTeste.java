@@ -1,12 +1,8 @@
 package br.edu.infnet.appos;
 
-import br.edu.infnet.appos.controller.MotoController;
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
-import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
-import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.service.MotoService;
-import br.edu.infnet.appos.model.test.AppImpressao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +26,7 @@ public class MotoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        File file = new File("src\\main\\resources\\files\\moto.txt");
+        File file = new File("src/main/resources/files/moto.txt");
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

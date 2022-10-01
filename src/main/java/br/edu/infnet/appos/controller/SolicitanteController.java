@@ -1,8 +1,8 @@
 package br.edu.infnet.appos.controller;
 
-import br.edu.infnet.appos.exceptions.NomeNaoPreenchidoException;
 import br.edu.infnet.appos.model.domain.Solicitante;
 import br.edu.infnet.appos.model.domain.Usuario;
+import br.edu.infnet.appos.model.dto.SolicitanteDto;
 import br.edu.infnet.appos.model.service.SolicitanteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,9 @@ import java.util.List;
     public String telaCadastro(){
         return "solicitante/cadastro";
     }
-    @PostMapping("/cadastro") public String cadastrar(Solicitante solicitante, @SessionAttribute("usuario")Usuario usuario) {
+    @PostMapping("/cadastro") public String cadastrar(SolicitanteDto solicitanteDto, @SessionAttribute("usuario")Usuario usuario) {
+        Solicitante solicitante = new Solicitante(solicitanteDto);
+        System.out.println(solicitanteDto.getVip());
         solicitante.setUsuario(usuario);
         logger.info("Inserindo solicitante no banco de dados");
         solicitanteService.add(solicitante);

@@ -27,7 +27,7 @@ public class UsuarioTeste implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(UsuarioTeste.class);
     @Override
     public void run(ApplicationArguments args) {
-        File file = new File("src\\main\\resources\\files\\usuarios.txt");
+        File file = new File("src/main/resources/files/usuarios.txt");
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

@@ -14,7 +14,7 @@ import java.util.List;
 public class SolicitanteService {
 
     @Autowired
-    SolicitanteRepository solicitanteRepository;
+    private SolicitanteRepository solicitanteRepository;
 
     Logger logger = LoggerFactory.getLogger(SolicitanteService.class);
     public List<Solicitante> findAll() {

@@ -18,20 +18,21 @@
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
-    <form class="bg-light p-5 mt-3" method="post" action="${pageContext.request.contextPath}/solicitante/cadastro">
-        <h3>Cadastro de solicitante</h3>
-        <div class="form-group mt-3">
+    <form method="post" action="${pageContext.request.contextPath}/solicitante/cadastro">
+        <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do solicitante">
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome do solicitante">
         </div>
-        <div class="form-group mt-3">
+        <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="tel" class="form-control" name="telefone" id="telefone" placeholder="Telefone...">
+            <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone do solicitante">
         </div>
-        <div class="form-group form-check mt-3">
-            <input type="checkbox" class="form-check-input" name="vip" value=true>
-            <input type="hidden" class="form-check-input" name="vip" value=false>
-            <label class="form-check-label">Vip</label>
+        <div>
+            <label for="vip">Vip</label>
+            <select id="vip" name="vip" class="form-control">
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Enviar</button>
     </form>
