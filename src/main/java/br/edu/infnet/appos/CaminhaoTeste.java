@@ -2,6 +2,7 @@ package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.exceptions.CapacidadeCargaInvalidaException;
 import br.edu.infnet.appos.model.domain.Caminhao;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.CaminhaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,8 @@ public class CaminhaoTeste implements ApplicationRunner {
 
             String linha = bufferedReader.readLine();
             String[] campos;
+            Usuario usuario = new Usuario();
+            usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
                 try {
@@ -47,7 +50,7 @@ public class CaminhaoTeste implements ApplicationRunner {
                     caminhao.setMarca(campos[3]);
                     caminhao.setModelo(campos[4]);
                     caminhao.setAnoFabricacao(Integer.parseInt(campos[5]));
-                    System.out.println("Potencia do veículo: " + caminhao.getPotencia());
+                    caminhao.setUsuario(usuario);
                     caminhaoService.add(caminhao);
                 } catch (CapacidadeCargaInvalidaException e) {
                     logger.error(e.getMessage());

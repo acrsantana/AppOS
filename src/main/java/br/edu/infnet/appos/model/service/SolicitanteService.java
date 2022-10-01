@@ -18,22 +18,22 @@ public class SolicitanteService {
 
     Logger logger = LoggerFactory.getLogger(SolicitanteService.class);
     public List<Solicitante> findAll() {
-        logger.info("Buscando solicitantes cadastrados");
+        logger.debug("Buscando solicitantes cadastrados");
         return solicitanteRepository.findAll();
     }
 
     public List<Solicitante> findAll(Usuario usuario) {
-        logger.info("Buscando solicitantes cadastrados");
+        logger.debug("Buscando solicitantes cadastrados");
         return solicitanteRepository.findSolicitanteByUsuario(usuario);
     }
 
     public void delete(Integer id) {
-        logger.info("Removendo solicitante {}", id);
+        logger.debug("Removendo solicitante {}", id);
         solicitanteRepository.deleteById(id);
     }
 
     public void add(Solicitante solicitante) {
-        logger.info("Adicionando o solicitante {}", solicitante.getNome());
+        logger.debug("Adicionando o solicitante {}", solicitante.getNome());
         solicitanteRepository.save(solicitante);
     }
 

@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
-@Order(5)
+@Order(6)
 public class OrdemServicoTeste implements ApplicationRunner {
 
     Logger logger = LoggerFactory.getLogger(OrdemServicoTeste.class);

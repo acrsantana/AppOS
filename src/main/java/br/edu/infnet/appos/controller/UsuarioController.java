@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -36,10 +38,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastro")
-    public String cadastrar(HttpServletRequest request) {
+    public String cadastrar(Usuario usuario) {
         try {
-            logger.info("Inserindo usuário no banco de dados");
-            usuarioService.cadastrar(request);
+            logger.info("Inserindo usuário {} no banco de dados", usuario.getNome());
+            usuarioService.cadastrar(usuario);
             return "redirect:/";
         } catch (UsuarioJaCadastradoException e) {
              logger.error(e.getMessage());

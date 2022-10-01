@@ -2,14 +2,13 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.NomeNaoPreenchidoException;
 import br.edu.infnet.appos.interfaces.IPrinter;
-import br.edu.infnet.appos.model.dto.SolicitanteDto;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
-import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Getter @Setter @NoArgsConstructor
 @Entity @Table(name = "solicitantes")
@@ -26,11 +25,6 @@ public class Solicitante implements IPrinter {
     private Usuario usuario;
     @ManyToOne
     private Veiculo veiculo;
-
-    public Solicitante(SolicitanteDto solicitanteDto){
-        BeanUtils.copyProperties(solicitanteDto, this);
-        this.vip = Boolean.parseBoolean(solicitanteDto.getVip());
-    }
 
     public Solicitante(String nome, String telefone, boolean vip) throws NomeNaoPreenchidoException {
         if (Objects.isNull(nome))

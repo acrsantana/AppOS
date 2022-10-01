@@ -1,6 +1,5 @@
 package br.edu.infnet.appos.model.dto;
 
-import br.edu.infnet.appos.exceptions.PedidoInvalidoException;
 import br.edu.infnet.appos.interfaces.IPrinter;
 import br.edu.infnet.appos.model.domain.OrdemServico;
 import br.edu.infnet.appos.model.domain.Servico;
@@ -10,10 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Objects;
 
 @NoArgsConstructor @Data
 public class OrdemServicoDto implements IPrinter{

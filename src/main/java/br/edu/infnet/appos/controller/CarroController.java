@@ -1,15 +1,14 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.model.domain.Carro;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.CarroService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +22,9 @@ public class CarroController {
     @Autowired
     private CarroService carroService;
     @GetMapping
-    public String telaLista(Model model){
-
-        model.addAttribute("listagem", carroService.findAll());
+    public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
+        logger.info("Buscando lista de carros");
+        model.addAttribute("listagem", carroService.findAll(usuario));
         return "carro/lista";
     }
 
@@ -41,8 +40,10 @@ public class CarroController {
         return "carro/cadastro";
     }
     @PostMapping("cadastro")
-    public String adicionar(HttpServletRequest request){
-        carroService.add(request);
+    public String adicionar(Carro carro, @SessionAttribute("usuario") Usuario usuario){
+        carro.setUsuario(usuario);
+        logger.info("Adicionando o carro {} ao banco de dados", carro.getMarca() + " " + carro.getModelo());
+        carroService.add(carro);
         return "redirect:/carro";
     }
 }

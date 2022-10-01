@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.VeiculoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/veiculo")
@@ -21,9 +20,9 @@ public class VeiculoController {
     @Autowired VeiculoService veiculoService;
     static Logger logger = LoggerFactory.getLogger(VeiculoController.class);
     @GetMapping
-    public String telaLista(Model model){
+    public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
 
-        model.addAttribute("listagem", veiculoService.findAll());
+        model.addAttribute("listagem", veiculoService.findAll(usuario));
         return "veiculo/lista";
     }
 

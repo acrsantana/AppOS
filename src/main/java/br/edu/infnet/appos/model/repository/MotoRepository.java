@@ -1,10 +1,13 @@
 package br.edu.infnet.appos.model.repository;
 
 import br.edu.infnet.appos.model.domain.Moto;
+import br.edu.infnet.appos.model.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MotoRepository extends JpaRepository<Moto, Integer> {
-
+    List<Moto> findMotosByUsuario(Usuario usuario);
 }

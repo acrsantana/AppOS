@@ -2,6 +2,7 @@ package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
 import br.edu.infnet.appos.model.domain.Moto;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.MotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
-@Order(2)
+@Order(4)
 public class MotoTeste implements ApplicationRunner {
 
     @Autowired
@@ -39,6 +40,8 @@ public class MotoTeste implements ApplicationRunner {
 
             String linha = bufferedReader.readLine();
             String[] campos;
+            Usuario usuario = new Usuario();
+            usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
                 try {
@@ -47,7 +50,7 @@ public class MotoTeste implements ApplicationRunner {
                     moto.setMarca(campos[3]);
                     moto.setModelo(campos[4]);
                     moto.setAnoFabricacao(Integer.parseInt(campos[5]));
-                    System.out.println("Potencia do veículo: " + moto.getPotencia());
+                    moto.setUsuario(usuario);
                     motoService.add(moto);
                 } catch (QuantidadePassageirosInvalidaException e) {
                     logger.error(e.getMessage());

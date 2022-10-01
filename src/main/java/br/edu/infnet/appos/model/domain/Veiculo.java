@@ -20,6 +20,10 @@ public abstract class Veiculo implements IPrinter {
     private String marca;
     private String modelo;
     private int anoFabricacao;
+
+    @OneToOne
+    private Usuario usuario;
+
     @OneToMany
     private List<Solicitante> solicitante;
 

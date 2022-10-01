@@ -21,7 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
-@Order(4)
+@Order(5)
 public class SolicitanteTeste implements ApplicationRunner {
 
     @Autowired
