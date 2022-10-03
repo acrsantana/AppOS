@@ -29,9 +29,9 @@ public class MotoTeste implements ApplicationRunner {
 
         String pathname;
         if (System.getProperty("os.name").equals("Windows 11")){
-            pathname = "src\\main\\resources\\files\\moto.txt";
+            pathname = "src\\main\\resources\\files\\veiculos.txt";
         } else {
-            pathname = "src/main/resources/files/moto.txt";
+            pathname = "src/main/resources/files/veiculos.txt";
         }
         File file = new File(pathname);
         try {
@@ -44,17 +44,21 @@ public class MotoTeste implements ApplicationRunner {
             usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
-                try {
+                if ("MO".equalsIgnoreCase(campos[0])){
+                    try {
 
-                    Moto moto = new Moto(Integer.parseInt(campos[0]), campos[1], Integer.parseInt(campos[2]));
-                    moto.setMarca(campos[3]);
-                    moto.setModelo(campos[4]);
-                    moto.setAnoFabricacao(Integer.parseInt(campos[5]));
-                    moto.setUsuario(usuario);
-                    motoService.add(moto);
-                } catch (QuantidadePassageirosInvalidaException e) {
-                    logger.error(e.getMessage());
+                        Moto moto = new Moto(Integer.parseInt(campos[1]), campos[2], Integer.parseInt(campos[3]));
+                        moto.setMarca(campos[4]);
+                        moto.setModelo(campos[5]);
+                        moto.setAnoFabricacao(Integer.parseInt(campos[6]));
+                        moto.setUsuario(usuario);
+                        motoService.add(moto);
+                    } catch (QuantidadePassageirosInvalidaException e) {
+                        logger.error(e.getMessage());
+                    }
+
                 }
+
                 linha = bufferedReader.readLine();
             }
 
@@ -64,7 +68,7 @@ public class MotoTeste implements ApplicationRunner {
         } catch (IOException e) {
             logger.error(e.getMessage());
         } finally {
-            logger.info("Carga do arquivo finalizada");
+            logger.info("Carga do arquivo {} finalizada com sucesso", file.getName());
         }
     }
 }

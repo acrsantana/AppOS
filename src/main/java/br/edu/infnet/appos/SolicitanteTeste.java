@@ -64,7 +64,7 @@ public class SolicitanteTeste implements ApplicationRunner {
         } catch (IOException e) {
             logger.error(e.getMessage());
         } finally {
-            logger.info("Carga do arquivo finalizada");
+            logger.info("Carga do arquivo {} finalizada com sucesso", file.getName());
         }
     }
 }

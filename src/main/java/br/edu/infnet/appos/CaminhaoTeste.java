@@ -29,9 +29,9 @@ public class CaminhaoTeste implements ApplicationRunner {
 
         String pathname;
         if (System.getProperty("os.name").equals("Windows 11")){
-            pathname = "src\\main\\resources\\files\\caminhao.txt";
+            pathname = "src\\main\\resources\\files\\veiculos.txt";
         } else {
-            pathname = "src/main/resources/files/caminhao.txt";
+            pathname = "src/main/resources/files/veiculos.txt";
         }
         File file = new File(pathname);
         try {
@@ -44,17 +44,20 @@ public class CaminhaoTeste implements ApplicationRunner {
             usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
-                try {
+                if ("CM".equalsIgnoreCase(campos[0])){
+                    try {
 
-                    Caminhao caminhao = new Caminhao(campos[0], Float.parseFloat(campos[1]), Float.parseFloat(campos[2]));
-                    caminhao.setMarca(campos[3]);
-                    caminhao.setModelo(campos[4]);
-                    caminhao.setAnoFabricacao(Integer.parseInt(campos[5]));
-                    caminhao.setUsuario(usuario);
-                    caminhaoService.add(caminhao);
-                } catch (CapacidadeCargaInvalidaException e) {
-                    logger.error(e.getMessage());
+                        Caminhao caminhao = new Caminhao(campos[1], Float.parseFloat(campos[2]), Float.parseFloat(campos[3]));
+                        caminhao.setMarca(campos[4]);
+                        caminhao.setModelo(campos[5]);
+                        caminhao.setAnoFabricacao(Integer.parseInt(campos[6]));
+                        caminhao.setUsuario(usuario);
+                        caminhaoService.add(caminhao);
+                    } catch (CapacidadeCargaInvalidaException e) {
+                        logger.error(e.getMessage());
+                    }
                 }
+
                 linha = bufferedReader.readLine();
             }
 
@@ -64,7 +67,7 @@ public class CaminhaoTeste implements ApplicationRunner {
         } catch (IOException e) {
             logger.error(e.getMessage());
         } finally {
-            logger.info("Carga do arquivo finalizada");
+            logger.info("Carga do arquivo {} finalizada com sucesso", file.getName());
         }
     }
 }

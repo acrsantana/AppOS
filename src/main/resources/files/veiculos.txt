@@ -1,0 +1,9 @@
+MO|1000|Racer|2|Kawasaki|Ninja|2020
+CA|Coupe|true|3|Tesla|Model S|2021
+CA|Hatch|false|2|Chevrolet|Celta|2008
+CM|Bitrem|10000.0|15.0|Mercedez|Super|2021
+MO|50|Scooter|1|Honda|Cinquentinha|2022
+CA|SUV|true|4|Mercedez Benz|G63 AMG|2022
+CM|Refrigerado|1000.0|6.0|Volvo|FoodCo|2015
+MO|250|Passeio|2|Honda|CBR|2019
+CM|Truck|5000.0|8.0|Scania|Super Truck|2018

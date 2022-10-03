@@ -28,9 +28,9 @@ public class CarroTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         String pathname;
         if (System.getProperty("os.name").equals("Windows 11")){
-            pathname = "src\\main\\resources\\files\\carro.txt";
+            pathname = "src\\main\\resources\\files\\veiculos.txt";
         } else {
-            pathname = "src/main/resources/files/carro.txt";
+            pathname = "src/main/resources/files/veiculos.txt";
         }
         File file = new File(pathname);
         Usuario usuario = new Usuario();
@@ -44,16 +44,18 @@ public class CarroTeste implements ApplicationRunner {
             boolean ar;
             while (linha != null){
                 campos = linha.split("\\|");
-                try {
+                if ("CA".equalsIgnoreCase(campos[0])){
+                    try {
 
-                    Carro carro = new Carro(campos[0], Boolean.parseBoolean(campos[1]), Integer.parseInt(campos[2]));
-                    carro.setMarca(campos[3]);
-                    carro.setModelo(campos[4]);
-                    carro.setAnoFabricacao(Integer.parseInt(campos[5]));
-                    carro.setUsuario(usuario);
-                    carroService.add(carro);
-                } catch (QuantidadePortasInvalidasException e) {
-                    logger.error(e.getMessage());
+                        Carro carro = new Carro(campos[1], Boolean.parseBoolean(campos[2]), Integer.parseInt(campos[3]));
+                        carro.setMarca(campos[4]);
+                        carro.setModelo(campos[5]);
+                        carro.setAnoFabricacao(Integer.parseInt(campos[6]));
+                        carro.setUsuario(usuario);
+                        carroService.add(carro);
+                    } catch (QuantidadePortasInvalidasException e) {
+                        logger.error(e.getMessage());
+                    }
                 }
                 linha = bufferedReader.readLine();
             }
@@ -64,7 +66,7 @@ public class CarroTeste implements ApplicationRunner {
         } catch (IOException e) {
             logger.error(e.getMessage());
         } finally {
-            logger.info("Carga do arquivo finalizada");
+            logger.info("Carga do arquivo {} finalizada com sucesso", file.getName());
         }
     }
 }
