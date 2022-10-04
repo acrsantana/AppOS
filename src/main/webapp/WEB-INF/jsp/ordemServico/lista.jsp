@@ -33,6 +33,7 @@
             <th>Data</th>
             <th>Garantia</th>
             <th>Solicitante</th>
+            <th>Veículo</th>
             <th>Serviços</th>
             <th>Ações</th>
         </tr>
@@ -52,6 +53,7 @@
                         </c:otherwise>
                     </c:choose>
                     <td>${os.solicitante.nome}</td>
+                    <td>${os.veiculo.modelo}</td>
                     <td>${os.servicos}</td>
                     <td><a href="/ordemServico/${os.id}/excluir">Excluir</a></td>
                 </tr>
