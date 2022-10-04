@@ -1,7 +1,4 @@
-Augusto
-Cezar
-Ribeiro
-Santana
-Cez�o
-da
-Bahia
+Luna;31999999999;true;Sedan;true;4;Adalberto;false;Lavagem completa;1;79.9
+Cezão;71999999999;true;Coupe;true;3;Pedro;true;Blindagem;40;3500.0
+Jojo Camara;21999999999;false;SUV;true;4;Pedro;false;Polimento;2;150
+Anderson;51999999999;false;Hatch;false;2;Carlos;true;Troca de óleo;1;90

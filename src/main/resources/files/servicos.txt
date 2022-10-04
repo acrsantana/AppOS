@@ -1,0 +1,5 @@
+Lavagem Completa|2|80
+Alinhamento|1|100
+Balanceamento|1|70
+Polimento|2|200
+Troca de Óleo|1|60

@@ -13,16 +13,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
-@Order(6)
+@Order(7)
 public class OrdemServicoTeste implements ApplicationRunner {
 
     Logger logger = LoggerFactory.getLogger(OrdemServicoTeste.class);
@@ -30,11 +27,10 @@ public class OrdemServicoTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        String diretorio = "d:\\";
-        String nomeArquivo = "ordensServico.txt";
+        File file = new File("src\\main\\resources\\files\\ordensServico.txt");
 
         try {
-            FileReader fileReader = new FileReader(diretorio + nomeArquivo);
+            FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String linha = bufferedReader.readLine();
             String[] campos = null;
@@ -48,7 +44,7 @@ public class OrdemServicoTeste implements ApplicationRunner {
                 OrdemServico os = new OrdemServico(solicitante, carro, servicos);
                 os.setMecanico(campos[6]);
                 os.setGarantia(Boolean.getBoolean(campos[7]));
-                OrdemServicoController.adicionaOS(os, "Adicionada OS do arquivo" + diretorio + nomeArquivo);
+                OrdemServicoController.adicionaOS(os, "Adicionada OS do arquivo" + file.getName());
                 linha = bufferedReader.readLine();
             }
 

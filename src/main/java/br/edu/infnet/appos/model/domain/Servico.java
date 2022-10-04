@@ -1,16 +1,24 @@
 package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.interfaces.IPrinter;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Data @AllArgsConstructor
+@RequiredArgsConstructor @NoArgsConstructor @Getter @Setter
+@Entity @Table(name = "ordens_de_servico")
 public class Servico implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @NonNull
     private String nomeServico;
+    @NonNull
     private Integer tempoDeExecucao;
+    @NonNull
     private BigDecimal valor;
 
 

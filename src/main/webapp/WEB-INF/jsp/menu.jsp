@@ -30,6 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/veiculo">Veículo</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/servico">Servico</a>
+                    </li>
                 </c:if>
             </ul>
             <ul class="navbar-nav">
