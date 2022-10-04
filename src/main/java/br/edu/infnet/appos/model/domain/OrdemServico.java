@@ -24,7 +24,7 @@ public class OrdemServico implements IPrinter{
     private Solicitante solicitante;
     @ManyToOne (cascade = CascadeType.ALL)
     private Veiculo veiculo;
-    @ManyToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Servico> servicos;
 
 

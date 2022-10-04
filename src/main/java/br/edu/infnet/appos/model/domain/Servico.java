@@ -43,6 +43,6 @@ public class Servico implements IPrinter {
     @Override
     public void impressao() {
         System.out.println("### Serviço ###");
-        System.out.println(toString());
+        System.out.println(this);
     }
 }

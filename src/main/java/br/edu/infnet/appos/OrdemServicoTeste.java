@@ -5,7 +5,8 @@ import br.edu.infnet.appos.exceptions.NomeNaoPreenchidoException;
 import br.edu.infnet.appos.exceptions.QuantidadePassageirosInvalidaException;
 import br.edu.infnet.appos.exceptions.QuantidadePortasInvalidasException;
 import br.edu.infnet.appos.model.domain.*;
-import br.edu.infnet.appos.model.service.*;
+import br.edu.infnet.appos.model.service.OrdemServicoService;
+import br.edu.infnet.appos.model.service.ServicoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,6 @@ public class OrdemServicoTeste implements ApplicationRunner {
 
     @Autowired OrdemServicoService ordemServicoService;
     @Autowired ServicoService servicoService;
-    @Autowired CarroService carroService;
-    @Autowired MotoService motoService;
-    @Autowired CaminhaoService caminhaoService;
-    @Autowired SolicitanteService solicitanteService;
     Logger logger = LoggerFactory.getLogger(OrdemServicoTeste.class);
 
     @Override
@@ -40,6 +37,7 @@ public class OrdemServicoTeste implements ApplicationRunner {
         File file = new File("src\\main\\resources\\files\\ordensServico.txt");
 
         try {
+            boolean verificaServicos = false;
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String linha = bufferedReader.readLine();
@@ -98,14 +96,20 @@ public class OrdemServicoTeste implements ApplicationRunner {
                         break;
                     case "SE":
                         Servico servico = new Servico(campos[1], Integer.parseInt(campos[2]), new BigDecimal(campos[3]));
-                        servico = servicoService.add(servico);
                         servicos.add(servico);
                         if (!Objects.isNull(ordemServico))
                             ordemServico.setServicos(servicos);
+                        verificaServicos = true;
                         break;
                 }
 
                 linha = bufferedReader.readLine();
+                if (verificaServicos && !Objects.isNull(linha)){
+                    if (!linha.startsWith("SE")){
+                        servicos = new ArrayList<>();
+                        verificaServicos = false;
+                    }
+                }
             }
             ordensServicos.forEach(os -> ordemServicoService.addOrdemServico(os));
             bufferedReader.close();
