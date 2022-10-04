@@ -25,7 +25,7 @@ public class ServicoService {
         servicoRepository.deleteById(id);
     }
 
-    public void add(Servico servico) {
-        servicoRepository.save(servico);
+    public Servico add(Servico servico) {
+        return servicoRepository.save(servico);
     }
 }

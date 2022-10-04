@@ -25,7 +25,7 @@ public class MotoService {
         motoRepository.deleteById(id);
     }
 
-    public void add(Moto moto) {
-        motoRepository.save(moto);
+    public Moto add(Moto moto) {
+        return motoRepository.save(moto);
     }
 }

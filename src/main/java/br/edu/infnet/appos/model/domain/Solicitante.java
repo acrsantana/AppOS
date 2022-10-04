@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
@@ -23,8 +24,8 @@ public class Solicitante implements IPrinter {
 
     @OneToOne
     private Usuario usuario;
-    @ManyToOne
-    private Veiculo veiculo;
+    @OneToMany
+    private List<OrdemServico> ordemServicos;
 
     public Solicitante(String nome, String telefone, boolean vip) throws NomeNaoPreenchidoException {
         if (Objects.isNull(nome))

@@ -26,7 +26,7 @@ public class CarroService {
         carroRepository.deleteById(id);
     }
 
-    public void add(Carro carro) {
-        carroRepository.save(carro);
+    public Carro add(Carro carro) {
+        return carroRepository.save(carro);
     }
 }

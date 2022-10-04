@@ -2,26 +2,31 @@ package br.edu.infnet.appos.model.domain;
 
 import br.edu.infnet.appos.exceptions.PedidoInvalidoException;
 import br.edu.infnet.appos.interfaces.IPrinter;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@NoArgsConstructor @Data
-//@Entity @Table(name = "ordens_de_servico")
+@NoArgsConstructor @Getter @Setter
+@Entity @Table(name = "ordens_de_servico")
 public class OrdemServico implements IPrinter{
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String mecanico;
     private LocalDateTime data;
     private boolean garantia;
-    private String mecanico;
+    @OneToOne(cascade = CascadeType.ALL)
     private Solicitante solicitante;
+    @ManyToOne (cascade = CascadeType.ALL)
     private Veiculo veiculo;
+    @ManyToMany
     private List<Servico> servicos;
-    private Integer id = 0;
+
 
     public OrdemServico(
             Solicitante solicitante,
@@ -49,6 +54,6 @@ public class OrdemServico implements IPrinter{
 
     @Override public void impressao() {
         System.out.println("### Ordem de Serviço ###");
-        System.out.println(toString());
+        System.out.println(this);
     }
 }

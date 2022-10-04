@@ -26,7 +26,7 @@ public class CaminhaoService {
         caminhaoRepository.deleteById(id);
     }
 
-    public void add(Caminhao caminhao) {
-        caminhaoRepository.save(caminhao);
+    public Caminhao add(Caminhao caminhao) {
+        return caminhaoRepository.save(caminhao);
     }
 }

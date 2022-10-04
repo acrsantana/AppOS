@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @RequiredArgsConstructor @NoArgsConstructor @Getter @Setter
-@Entity @Table(name = "ordens_de_servico")
+@Entity @Table(name = "servicos")
 public class Servico implements IPrinter {
 
     @Id

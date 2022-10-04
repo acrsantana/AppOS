@@ -32,9 +32,9 @@ public class SolicitanteService {
         solicitanteRepository.deleteById(id);
     }
 
-    public void add(Solicitante solicitante) {
+    public Solicitante add(Solicitante solicitante) {
         logger.debug("Adicionando o solicitante {}", solicitante.getNome());
-        solicitanteRepository.save(solicitante);
+        return solicitanteRepository.save(solicitante);
     }
 
 
