@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -26,4 +27,10 @@ public class VeiculoService {
         veiculoRepository.deleteById(id);
     }
 
+    public HashSet buscaCombo() {
+        List<Veiculo> veiculos = veiculoRepository.findAll();
+        HashSet<String> combo = new HashSet<>();
+        veiculos.forEach(veiculo -> combo.add(veiculo.getModelo()));
+        return combo;
+    }
 }

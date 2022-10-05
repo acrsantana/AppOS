@@ -7,6 +7,7 @@ import br.edu.infnet.appos.model.repository.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -27,5 +28,12 @@ public class ServicoService {
 
     public Servico add(Servico servico) {
         return servicoRepository.save(servico);
+    }
+
+    public HashSet<String> buscaCombo() {
+        List<Servico> servicos = servicoRepository.findAll();
+        HashSet<String> combo = new HashSet<>();
+        servicos.forEach(servico -> combo.add(servico.getNomeServico()));
+        return combo;
     }
 }

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -37,5 +38,10 @@ public class SolicitanteService {
         return solicitanteRepository.save(solicitante);
     }
 
-
+    public HashSet<String> buscaCombo() {
+        List<Solicitante> solicitantes = solicitanteRepository.findAll();
+        HashSet<String> combo = new HashSet<String>();
+        solicitantes.forEach(solicitante -> combo.add(solicitante.getNome()));
+        return combo;
+    }
 }
