@@ -33,4 +33,8 @@ public class VeiculoService {
         veiculos.forEach(veiculo -> combo.add(veiculo.getModelo()));
         return combo;
     }
+
+    public Veiculo findById(Integer veiculo) {
+        return veiculoRepository.findById(veiculo).orElseThrow();
+    }
 }

@@ -36,4 +36,8 @@ public class ServicoService {
         servicos.forEach(servico -> combo.add(servico.getNomeServico()));
         return combo;
     }
+
+    public Servico findById(Integer srv) {
+        return servicoRepository.findById(srv).orElseThrow();
+    }
 }

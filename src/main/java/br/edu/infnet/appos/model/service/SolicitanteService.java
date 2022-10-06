@@ -44,4 +44,8 @@ public class SolicitanteService {
         solicitantes.forEach(solicitante -> combo.add(solicitante.getNome()));
         return combo;
     }
+
+    public Solicitante findById(Integer solicitante) {
+        return solicitanteRepository.findById(solicitante).orElseThrow();
+    }
 }

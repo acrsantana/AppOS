@@ -1,6 +1,7 @@
 package br.edu.infnet.appos.controller;
 
 import br.edu.infnet.appos.model.domain.OrdemServico;
+import br.edu.infnet.appos.model.dto.OrdemServicoDto;
 import br.edu.infnet.appos.model.service.OrdemServicoService;
 import br.edu.infnet.appos.model.service.ServicoService;
 import br.edu.infnet.appos.model.service.SolicitanteService;
@@ -45,7 +46,7 @@ public class OrdemServicoController {
     }
 
     @PostMapping("cadastro")
-    public String adicionaOS(OrdemServico os){
+    public String adicionaOS(OrdemServicoDto os){
         ordemServicoService.addOrdemServico(os);
         return "redirect:/ordemServico";
     }

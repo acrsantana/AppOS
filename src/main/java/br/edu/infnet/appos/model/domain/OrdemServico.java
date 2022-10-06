@@ -20,7 +20,7 @@ public class OrdemServico implements IPrinter{
     private String mecanico;
     private LocalDateTime data;
     private boolean garantia;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Solicitante solicitante;
     @ManyToOne (cascade = CascadeType.ALL)
     private Veiculo veiculo;

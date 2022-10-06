@@ -32,7 +32,7 @@
                     <label for="solicitante">Solicitante</label>
                     <select class="form-control" name="solicitante" id="solicitante">
                         <c:forEach var="solicitante" items="${solicitantes}">
-                            <option value="${solicitante}">${solicitante.nome}</option>
+                            <option value="${solicitante.id}">${solicitante.nome}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -44,7 +44,7 @@
                     <label for="veiculo">Veículo</label>
                     <select class="form-control" name="veiculo" id="veiculo">
                         <c:forEach var="veiculo" items="${veiculos}">
-                            <option value="${veiculo}">${veiculo.marca} ${veiculo.modelo}</option>
+                            <option value="${veiculo.id}">${veiculo.marca} ${veiculo.modelo}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -55,14 +55,10 @@
                     <label for="exampleFormControlSelect2">Serviços</label>
                     <select multiple class="form-control" id="exampleFormControlSelect2" name="servicos">
                         <c:forEach var="servico" items="${listaServicos}">
-                            <option value="${servico}">${servico.nomeServico}</option>
+                            <option value="${servico.id}">${servico.nomeServico}</option>
                         </c:forEach>
                     </select>
                 </div>
-<%--                <div class="form-group mt-3">--%>
-<%--                    <label for="servicos">Serviços</label>--%>
-<%--                    <input type="text" class="form-control" name="servicos" id="servicos" placeholder="Serviços">--%>
-<%--                </div>--%>
             </div>
         </div>
         <div class="row">
