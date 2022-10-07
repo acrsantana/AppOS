@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.model.service;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Caminhao;
 import br.edu.infnet.appos.model.domain.Solicitante;
 import br.edu.infnet.appos.model.domain.Usuario;
@@ -22,8 +23,12 @@ public class CaminhaoService {
         return caminhaoRepository.findAllByUsuario(usuario);
     }
 
-    public void delete(Integer id) {
-        caminhaoRepository.deleteById(id);
+    public void delete(Integer id) throws VeiculoEmUsoException {
+        try {
+            caminhaoRepository.deleteById(id);
+        } catch (Exception e){
+            throw new VeiculoEmUsoException("Não é possível excluir o caminhão pois o mesmo está em uso");
+        }
     }
 
     public Caminhao add(Caminhao caminhao) {

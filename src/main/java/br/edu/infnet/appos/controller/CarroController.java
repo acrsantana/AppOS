@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.CarroService;
@@ -9,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/carro")
 public class CarroController {
 
     static Logger logger = LoggerFactory.getLogger(CarroController.class);
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
 
     @Autowired
     private CarroService carroService;
@@ -25,14 +26,27 @@ public class CarroController {
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         logger.info("Buscando lista de carros");
         model.addAttribute("listagem", carroService.findAll(usuario));
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "carro/lista";
     }
 
     @GetMapping("{id}/excluir")
-    public RedirectView excluiCarro(@PathVariable Integer id){
+    public String excluiCarro(@PathVariable Integer id, Model model){
         logger.info("Excluir carro {}", id);
-        carroService.delete(id);
-        return new RedirectView("/carro");
+        try {
+            carroService.delete(id);
+        } catch (VeiculoEmUsoException e) {
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
+            logger.error(e.getMessage());
+        }
+
+        return "redirect:/carro";
     }
 
     @GetMapping("cadastro")

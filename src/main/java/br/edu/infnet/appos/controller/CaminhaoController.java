@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Caminhao;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.CaminhaoService;
@@ -18,18 +19,33 @@ public class CaminhaoController {
     @Autowired
     CaminhaoService caminhaoService;
     static Logger logger = LoggerFactory.getLogger(CaminhaoController.class);
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
     @GetMapping
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         logger.info("Buscando lista de caminhões");
         model.addAttribute("listagem", caminhaoService.findAll(usuario));
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "caminhao/lista";
     }
 
     @GetMapping("{id}/excluir")
-    public RedirectView excluiCaminhao(@PathVariable Integer id){
+    public String excluiCaminhao(@PathVariable Integer id){
         logger.info("Excluir caminhão {}", id);
-        caminhaoService.delete(id);
-        return new RedirectView("/caminhao");
+        try {
+            caminhaoService.delete(id);
+        }catch (VeiculoEmUsoException e){
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
+            logger.error(e.getMessage());
+        }
+        return "redirect:/caminhao";
     }
 
     @GetMapping("/cadastro")

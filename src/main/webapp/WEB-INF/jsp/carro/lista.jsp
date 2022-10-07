@@ -29,6 +29,7 @@
             <div class="col-2">
                 <a href="carro/cadastro" type="button" class="btn btn-primary m-5">Cadastrar</a>
             </div>
+
             <hr class="my-4">
         </div>
     </div>
@@ -70,7 +71,14 @@
             </c:forEach>
         </tbody>
     </table>
-
+    <c:if test="${not empty mensagem}">
+        <div class="alert ${tipo} alert-dismissible fade show" role="alert">
+                ${mensagem}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
 </div>
 
 </body>
