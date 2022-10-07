@@ -46,9 +46,9 @@ public class OrdemServicoTeste implements ApplicationRunner {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             Usuario usuario = new Usuario();
             usuario.setId(1);
-            Solicitante solicitante = null;
+            Solicitante solicitante;
             OrdemServico ordemServico = null;
-            Veiculo veiculo = null;
+            Veiculo veiculo;
             String[] campos;
             while (linha != null){
                 campos = linha.split(";");
@@ -59,6 +59,7 @@ public class OrdemServicoTeste implements ApplicationRunner {
                         ordemServico.setGarantia(Boolean.parseBoolean(campos[3]));
                         ordemServico.setMecanico(campos[1]);
                         ordemServico.setData(LocalDateTime.parse(campos[2], formatter));
+                        ordemServico.setUsuario(usuario);
                         ordensServicos.add(ordemServico);
                         break;
                     case "SO":
@@ -96,6 +97,7 @@ public class OrdemServicoTeste implements ApplicationRunner {
                         break;
                     case "SE":
                         Servico servico = new Servico(campos[1], Integer.parseInt(campos[2]), new BigDecimal(campos[3]));
+                        servico.setUsuario(usuario);
                         servicos.add(servico);
                         if (!Objects.isNull(ordemServico))
                             ordemServico.setServicos(servicos);

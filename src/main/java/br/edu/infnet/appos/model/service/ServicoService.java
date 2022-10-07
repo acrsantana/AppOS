@@ -18,9 +18,9 @@ public class ServicoService {
         return servicoRepository.findAll();
     }
 
-//    public List<Servico> findAll(Usuario usuario) {
-//        return servicoRepository.findServicosByUsuario(usuario);
-//    }
+    public List<Servico> findAll(Usuario usuario) {
+        return servicoRepository.findServicosByUsuario(usuario);
+    }
 
     public void delete(Integer id) {
         servicoRepository.deleteById(id);

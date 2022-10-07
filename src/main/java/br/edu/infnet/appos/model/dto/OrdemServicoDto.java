@@ -1,10 +1,7 @@
 package br.edu.infnet.appos.model.dto;
 
 import br.edu.infnet.appos.interfaces.IPrinter;
-import br.edu.infnet.appos.model.domain.OrdemServico;
-import br.edu.infnet.appos.model.domain.Servico;
-import br.edu.infnet.appos.model.domain.Solicitante;
-import br.edu.infnet.appos.model.domain.Veiculo;
+import br.edu.infnet.appos.model.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +18,7 @@ public class OrdemServicoDto{
     private Integer solicitante;
     private Integer veiculo;
     private List<Integer> servicos;
+    private Usuario usuario;
 
 
     public OrdemServicoDto( OrdemServico os) {

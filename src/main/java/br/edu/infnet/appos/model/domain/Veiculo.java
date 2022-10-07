@@ -20,7 +20,8 @@ public abstract class Veiculo implements IPrinter {
     private String modelo;
     private int anoFabricacao;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     public abstract int getPotencia();

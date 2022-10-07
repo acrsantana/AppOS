@@ -20,12 +20,18 @@ public class OrdemServico implements IPrinter{
     private String mecanico;
     private LocalDateTime data;
     private boolean garantia;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idSolicitante")
     private Solicitante solicitante;
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private Veiculo veiculo;
-    @OneToMany (cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id")
     private List<Servico> servicos;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
 
     public OrdemServico(

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Integer> {
 
-//    List<Servico> findServicosByUsuario(Usuario usuario);
+    List<Servico> findServicosByUsuario(Usuario usuario);
 
 }

@@ -1,6 +1,7 @@
 package br.edu.infnet.appos;
 
 import br.edu.infnet.appos.model.domain.Servico;
+import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.ServicoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +34,12 @@ public class ServicoTeste implements ApplicationRunner {
             String linha = bufferedReader.readLine();
             String[] campos;
             Servico servico;
+            Usuario usuario = new Usuario();
+            usuario.setId(1);
             while (linha != null){
                 campos = linha.split("\\|");
                 servico = new Servico(campos[0], Integer.parseInt(campos[1]), new BigDecimal(campos[2]));
+                servico.setUsuario(usuario);
                 servicoService.add(servico);
                 linha = bufferedReader.readLine();
             }

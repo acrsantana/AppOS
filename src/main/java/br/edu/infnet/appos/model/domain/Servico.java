@@ -21,6 +21,10 @@ public class Servico implements IPrinter {
     @NonNull
     private BigDecimal valor;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
 
     @Override
     public String toString() {

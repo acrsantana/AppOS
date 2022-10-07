@@ -22,8 +22,10 @@ public class Solicitante implements IPrinter {
     private String telefone;
     private boolean vip;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+
     @OneToMany
     private List<OrdemServico> ordemServicos;
 
