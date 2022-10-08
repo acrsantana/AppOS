@@ -1,5 +1,7 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.SolicitanteEmUsoException;
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Solicitante;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.SolicitanteService;
@@ -16,10 +18,17 @@ import java.util.List;
 
     @Autowired SolicitanteService solicitanteService;
     static Logger logger = LoggerFactory.getLogger(SolicitanteController.class);
-
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
     @GetMapping public String telaLista(Model model, @SessionAttribute("usuario")Usuario usuario) {
         List<Solicitante> solicitantes = solicitanteService.findAll(usuario);
         model.addAttribute("listagem", solicitantes);
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "solicitante/lista";
     }
 
@@ -36,7 +45,14 @@ import java.util.List;
 
     @GetMapping("{id}/excluir") public String excluiSolicitante(@PathVariable String id) {
         logger.info("Excluir solicitante {}", id);
-        solicitanteService.delete(Integer.parseInt(id));
+        try {
+            solicitanteService.delete(Integer.parseInt(id));
+        } catch (SolicitanteEmUsoException e) {
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
+            logger.error(e.getMessage());
+        }
         return "redirect:/solicitante";
     }
 

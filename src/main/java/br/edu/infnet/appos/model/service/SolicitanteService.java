@@ -1,5 +1,7 @@
 package br.edu.infnet.appos.model.service;
 
+import br.edu.infnet.appos.exceptions.SolicitanteEmUsoException;
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Solicitante;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.repository.SolicitanteRepository;
@@ -28,9 +30,13 @@ public class SolicitanteService {
         return solicitanteRepository.findSolicitanteByUsuario(usuario);
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id) throws SolicitanteEmUsoException {
         logger.debug("Removendo solicitante {}", id);
-        solicitanteRepository.deleteById(id);
+        try {
+            solicitanteRepository.deleteById(id);
+        } catch (Exception e){
+            throw new SolicitanteEmUsoException("Não é possível excluir o solicitante pois o mesmo está em uso");
+        }
     }
 
     public Solicitante add(Solicitante solicitante) {

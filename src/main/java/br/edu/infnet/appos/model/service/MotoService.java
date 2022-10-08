@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.model.service;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.domain.Usuario;
@@ -21,8 +22,13 @@ public class MotoService {
     public List<Moto> findAll(Usuario usuario) {
         return motoRepository.findMotosByUsuario(usuario);
     }
-    public void delete(Integer id) {
-        motoRepository.deleteById(id);
+    public void delete(Integer id) throws VeiculoEmUsoException {
+        try {
+            motoRepository.deleteById(id);
+        } catch (Exception e){
+            throw new VeiculoEmUsoException("Não é possível excluir a moto pois a mesma está em uso");
+        }
+
     }
 
     public Moto add(Moto moto) {

@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.ServicoEmUsoException;
 import br.edu.infnet.appos.model.domain.Servico;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.ServicoService;
@@ -17,13 +18,20 @@ import org.springframework.web.bind.annotation.*;
 public class ServicoController {
 
     static Logger logger = LoggerFactory.getLogger(ServicoController.class);
-
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
     @Autowired
     private ServicoService servicoService;
     @GetMapping
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         logger.info("Buscando lista de serviços");
         model.addAttribute("listagem", servicoService.findAll(usuario));
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "servico/lista";
     }
 
@@ -32,7 +40,10 @@ public class ServicoController {
         logger.info("Excluir serviço {}", id);
         try {
             servicoService.delete(id);
-        } catch (ConstraintViolationException e){
+        } catch (ServicoEmUsoException e){
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
             logger.error(e.getMessage());
         }
 

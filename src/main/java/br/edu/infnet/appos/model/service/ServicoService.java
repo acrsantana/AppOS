@@ -1,5 +1,7 @@
 package br.edu.infnet.appos.model.service;
 
+import br.edu.infnet.appos.exceptions.ServicoEmUsoException;
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Carro;
 import br.edu.infnet.appos.model.domain.Servico;
 import br.edu.infnet.appos.model.domain.Usuario;
@@ -22,8 +24,13 @@ public class ServicoService {
         return servicoRepository.findServicosByUsuario(usuario);
     }
 
-    public void delete(Integer id) {
-        servicoRepository.deleteById(id);
+    public void delete(Integer id) throws ServicoEmUsoException {
+
+        try {
+            servicoRepository.deleteById(id);
+        } catch (Exception e){
+            throw new ServicoEmUsoException("Não é possível excluir o servico pois o mesmo está em uso");
+        }
     }
 
     public Servico add(Servico servico) {

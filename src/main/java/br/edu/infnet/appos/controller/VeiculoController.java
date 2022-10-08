@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.VeiculoService;
 import org.slf4j.Logger;
@@ -19,17 +20,32 @@ public class VeiculoController {
 
     @Autowired VeiculoService veiculoService;
     static Logger logger = LoggerFactory.getLogger(VeiculoController.class);
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
     @GetMapping
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
-
+        logger.info("Buscando lista de veículos");
         model.addAttribute("listagem", veiculoService.findAll(usuario));
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "veiculo/lista";
     }
 
     @GetMapping("{id}/excluir")
     public RedirectView excluir(@PathVariable Integer id){
         logger.info("Excluir veículo {}", id);
-        veiculoService.delete(id);
+        try {
+            veiculoService.delete(id);
+        } catch (VeiculoEmUsoException e) {
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
+            logger.error(e.getMessage());
+        }
         return new RedirectView("/veiculo");
     }
 

@@ -1,5 +1,6 @@
 package br.edu.infnet.appos.controller;
 
+import br.edu.infnet.appos.exceptions.VeiculoEmUsoException;
 import br.edu.infnet.appos.model.domain.Moto;
 import br.edu.infnet.appos.model.domain.Usuario;
 import br.edu.infnet.appos.model.service.MotoService;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/moto")
 public class MotoController {
     static Logger logger = LoggerFactory.getLogger(MotoController.class);
-
+    String mensagem;
+    String tipo;
+    boolean exibirMensagem = false;
     @Autowired
     private MotoService motoService;
 
@@ -24,13 +27,26 @@ public class MotoController {
     public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario){
         logger.info("Buscando lista de motos");
         model.addAttribute("listagem", motoService.findAll(usuario));
+        if (exibirMensagem){
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("tipo", tipo);
+            exibirMensagem = false;
+        }
         return "moto/lista";
     }
 
     @GetMapping("{id}/excluir")
     public String excluiMoto(@PathVariable Integer id){
         logger.info("Excluir moto {}", id);
-        motoService.delete(id);
+        try {
+            motoService.delete(id);
+        } catch (VeiculoEmUsoException e) {
+            exibirMensagem = true;
+            mensagem = e.getMessage();
+            tipo = "alert-danger";
+            logger.error(e.getMessage());
+        }
+
         return "redirect:/moto";
     }
 
